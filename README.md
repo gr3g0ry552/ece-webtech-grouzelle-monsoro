@@ -6,5 +6,5 @@ Ce serveur web a été conçu dans le cadre du projet WebTech ING4 de l'ECE Pari
 
 # Contributeurs
 
-Yan GROUZELLE
-Grégory MONSORO
+* Yan GROUZELLE
+* Grégory MONSORO

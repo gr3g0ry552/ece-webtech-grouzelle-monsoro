@@ -2,7 +2,7 @@
 
 # Description
 
-Ce serveur web à été conçu dans le cadre du projet WebTech ING4 de l'ECE Paris
+Ce serveur web a été conçu dans le cadre du projet WebTech ING4 de l'ECE Paris
 
 # Contributeurs
 

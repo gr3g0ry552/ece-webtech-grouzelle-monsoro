@@ -1,0 +1,21 @@
+{
+  "name": "ece-webtech-grouzelle-monsoro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro/issues"
+  },
+  "homepage": "https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro#readme"
+}

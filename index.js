@@ -1,6 +1,3 @@
-// Import a module
-const http = require('http')
-
 // Define a string constant concatenating strings
 const content = '<!DOCTYPE html>' +
 '<html>' +
@@ -9,16 +6,15 @@ const content = '<!DOCTYPE html>' +
 '        <title>ECE AST</title>' +
 '    </head>' + 
 '    <body>' +
-'       <p>Hello World!</p>' +
+'       <p>Hello World</p>' +
 '    </body>' +
 '</html>'
 
-const serverHandle = function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write(content);
-  res.end();
-}
-const server = http.createServer(serverHandle);
-server.listen(8080)
+// Import Node url module
+const url = require('url')
+const qs = require('querystring')
 
-//http.server
+const http = require('http')
+const handles = require('./handles')
+const server = http.createServer(handles.serverHandle);
+server.listen(8080)

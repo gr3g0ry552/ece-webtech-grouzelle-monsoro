@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "develop": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro/issues"
   },
-  "homepage": "https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro#readme"
+  "homepage": "https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
 }

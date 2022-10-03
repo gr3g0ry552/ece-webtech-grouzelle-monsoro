@@ -2,6 +2,7 @@
 const http = require('http')
 //import url module
 const url = require('url')
+const qs = require('querystring')
 
 // Define a string constant concatenating strings
 const content = '<!DOCTYPE html>' +
@@ -17,11 +18,14 @@ const content = '<!DOCTYPE html>' +
 
 const serverHandle = function (req, res) {
   // Retrieve and print the current path
-  const path = url.parse(req.url).pathname;
-  console.log(path);
+  //const path = url.parse(req.url).pathname;
+  // Retrieve and print the queryParams
+  const queryParams = qs.parse(url.parse(req.url).query);
+  console.log(queryParams);
+  //console.log(path);
 
   res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write(path);
+  res.write(content);
   res.end();
 }
 const server = http.createServer(serverHandle);

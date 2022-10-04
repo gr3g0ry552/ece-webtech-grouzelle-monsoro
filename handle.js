@@ -17,9 +17,13 @@ module.exports = {
 
   res.writeHead(200, {'Content-Type': 'text/html'});
   if (path === '/hello' && 'name' in params) {
+    if(params['name']=='yan'){
+        res.write('je m appelle yan etudiant a ece paris')
+    }else{
     res.write('Hello ' + params['name'])
+    }
   } else {
-    res.write('Hello anonymous')
+    res.write('code 404')
   }
   res.end();
 

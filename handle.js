@@ -13,12 +13,15 @@ module.exports = {
   const route = url.parse(req.url)
   const path = route.pathname 
   const params = qs.parse(route.query)
-
+  const content=require("./content/about.json")
 
   res.writeHead(200, {'Content-Type': 'text/html'});
+  
   if (path === '/hello' && 'name' in params) {
     if(params['name']=='yan'){
-        res.write('je m appelle yan etudiant a ece paris')
+        //res.write( require("./content/about.json"))
+        
+        res.write(content)
     }else{
     res.write('Hello ' + params['name'])
     }

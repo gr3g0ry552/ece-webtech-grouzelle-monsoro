@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro#readme",
   "dependencies": {
+    "express": "^4.18.1",
     "nodemon": "^2.0.20"
   }
 }

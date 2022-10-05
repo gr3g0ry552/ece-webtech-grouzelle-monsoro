@@ -1,4 +1,19 @@
-let db = {
+const express = require("express");
+const infos = require("./content/about.json");
+//const articles = require("./content/articles");
+const app = express();
+const port = 3000;
+
+//import db from 
+
+app.get("/", (req, res) => res.send("WELCOME"));
+
+app.get("/infos", (req,res) => { 
+  res.json(infos);
+})
+
+app.get("/articles", (req, res) => {
+  let db = {
     articles: [
       {
         id: '1',
@@ -40,3 +55,7 @@ let db = {
       // ...
     ]
   }
+  res.send(db);
+})
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));

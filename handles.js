@@ -4,7 +4,8 @@ const url = require('url')
 const qs = require('querystring')
 
 module.exports = {
-    serverHandle: function (req, res) {
+    serverHandle: (req, res) => { // Arrow function
+
         const route = url.parse(req.url)
         const path = route.pathname 
         const params = qs.parse(route.query)

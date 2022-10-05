@@ -10,11 +10,7 @@ const content = '<!DOCTYPE html>' +
 '    </body>' +
 '</html>'
 
-// Import Node url module
-const url = require('url')
-const qs = require('querystring')
-
 const http = require('http')
-const handles = require('./handles')
-const server = http.createServer(handles.serverHandle);
+const handles = require('./handles') // Appel du dossier hadnles.js (importe toutes les fonctions du dossier)
+const server = http.createServer(handles.serverHandle); // Import de la fonction serveurHandle
 server.listen(8080)

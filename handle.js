@@ -13,12 +13,12 @@ module.exports = {
   //const content = require("./content/articles")
 
   res.writeHead(200, {'Content-Type': 'text/html'});
-  
+
   if (path === '/hello' && 'name' in params) {
-    if(params['name']=='yan'){
+    if(params['name']=='gregory'){
         //res.write( require("./content/about.json"))
         
-        res.write(content)
+        
     }else{
     res.write('Hello ' + params['name'])
     }
@@ -26,5 +26,14 @@ module.exports = {
     res.write('code 404')
   }
   res.end();
+  
+  /*switch(path) {
+    case "'/hello' && 'name' in params" :
+      res.write(content)
+      break
+    default :
+      break
+  }*/
+  
   }
 }

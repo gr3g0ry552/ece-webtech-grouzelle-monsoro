@@ -15,14 +15,14 @@ let db = {
         author: 'Grégory'
       },
       {
-        id: '1',
+        id: '3',
         title: 'ASUS',
         content: 'Elctronics_brand',
         date: '04/10/2022',
         author: 'Grégory'
       },
       {
-        id: '1',
+        id: '4',
         title: 'BMW',
         content: 'Car_brand',
         date: '04/10/2022',

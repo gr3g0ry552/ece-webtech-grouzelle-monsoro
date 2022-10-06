@@ -83,8 +83,6 @@ app.put('api/course/:id', (req,res) => {
 });
 
 
-
-
 app.delete('/api/courses/:id', (req,res) => {
     //Look up the course
     const course = courses.find(c => c.id === parseInt(req.params.id));    
@@ -99,10 +97,6 @@ app.delete('/api/courses/:id', (req,res) => {
 
     res.send(course)
 });
-
-
-
-
 
 
 function validateCourse (course) {

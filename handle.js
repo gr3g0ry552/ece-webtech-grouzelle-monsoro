@@ -17,8 +17,7 @@ module.exports = {
   if (path === '/hello' && 'name' in params) {
     if(params['name']=='gregory'){
         //res.write( require("./content/about.json"))
-        
-        
+
     }else{
     res.write('Hello ' + params['name'])
     }

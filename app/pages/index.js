@@ -7,7 +7,8 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-  <><h1>Bienvenue</h1><div>
+  <><h1>Bienvenue</h1>
+  <div className='content'>
       <ul>
         <Link href='/about'>About</Link>
       </ul>

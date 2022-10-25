@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Layout from "../componnent/layout";
 
 
@@ -15,25 +16,23 @@ export default function article({article}){
 return (
 <Layout>
 <h1>page article</h1>
-<div>
+
 <h1>All articles</h1>
         {
             article.map(article=>(
+                <Link href={"/articles/"+article.id} key={article.id}>
 
 <div key={article.id}>
-<a>
-    <h2>nom d'article : {article.name}</h2>
-    <li>Prix : {article.price}</li>
-    <li>type : {article.type}</li>
+<ul>
+nom d'article : {article.name}
+</ul>
     
-</a>
-
 
 </div>
-
+ </Link>
             ))
         } 
-</div>
+
 
 </Layout>
 );

@@ -5,34 +5,43 @@ import Image from 'next/image'
 
 export default function Header(){
   return (
+
     <header>
-      <div>
+    <div className='headerContent'>
+      <div className='Retour Menu'>
         <Link href={`/`}>
           <a>
             
           <h1>
-              Web technologies
+              HOME
            </h1>
           </a>
         </Link>
       </div>
-      <ul>
-        <li>
-          <Link href="/articles">
-            Articles
-          </Link>
-        </li>
+      <div className='menu' style={{textAlign: "right", top: "0px"}}>
+      <div className='About'>
         <li>
           <Link href="/about">
             About us
           </Link>
         </li>
+      </div>
+      <div className='Articles'>
+        <li>
+          <Link href="/articles">
+            Articles
+          </Link>
+        </li>
+      </div>
+      <div className='Contacts'>
         <li>
           <Link href="/contacts">
             Contact us
           </Link>
         </li>
-      </ul>
+      </div>
+      </div>
+    </div>
     </header>
   )
 }

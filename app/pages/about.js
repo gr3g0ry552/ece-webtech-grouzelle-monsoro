@@ -1,5 +1,5 @@
 
-import Layout from '../componnent/layout.js';
+import Layout from '../componnent/layout.jsx';
 
 
 

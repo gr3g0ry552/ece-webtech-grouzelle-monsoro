@@ -1,13 +1,16 @@
 
 
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from '../'
 
 export default function Header(){
   return (
 
     <header>
-    <div className='headerContent'>
+    <div className='headerContent' color='blue'>
+      <div className='logoEce'>
+        <img src={Image}/>
+      </div>
       <div className='Retour Menu'>
         <Link href={`/`}>
           <a>

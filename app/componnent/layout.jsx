@@ -1,6 +1,6 @@
 
-import Header from './header.js'
-import Footer from '../componnent/footer.js'
+import Header from './header.jsx'
+import Footer from './footer.jsx'
 
 
 export default function Layout({children}){

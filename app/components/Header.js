@@ -1,12 +1,12 @@
 
-import styles from '../styles/Layout.module.css'
+
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Header(){
   return (
-    <header className={styles.header}>
-      <div className={styles.logo}>
+    <header>
+      <div>
         <Link href={`/`}>
           <a>
             <Image src="/adaltas.svg" alt="Adaltas Logo" width={25} height={25} />
@@ -16,7 +16,7 @@ export default function Header(){
           </a>
         </Link>
       </div>
-      <ul className={styles.menu}>
+      <ul>
         <li>
           <Link href="/articles">
             Articles

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Contacts.module.css'
+
 import Layout from '../components/Layout.js'
 
 export default function Contacts() {
@@ -14,7 +14,7 @@ export default function Contacts() {
       <h1>
         Contact
       </h1>
-      <form className={styles.form}>
+      <form>
         <div>
           <label>
             <span>First name</span>

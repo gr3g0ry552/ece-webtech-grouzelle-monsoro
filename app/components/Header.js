@@ -3,36 +3,38 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function Header(){
+export default function Header() {
   return (
-    <header>
-      <div>
-        <Link href={`/`}>
+    <header class="bg-slate-300">
+      <title>Create Next App</title>
+      <Link href={`/`}>
           <a>
-            <Image src="/adaltas.svg" alt="Adaltas Logo" width={25} height={25} />
-            <span>
+           
+            <span class="text-3xl box-border w-50">
               Web technologies
             </span>
           </a>
-        </Link>
+        </Link> 
+      <div class="container mx-auto px-4 columns-3 gap-4">
+
+        
+          <div class="bg-slate-200 box-border w-10 ">
+            <Link href="/articles">
+              Articles
+            </Link>
+          </div>
+          <div class="bg-red-400">
+            <Link href="/about">
+              About us
+            </Link>
+          </div>
+          <div class="bg-slate-500">
+            <Link href="/contacts">
+              Contact us
+            </Link>
+          </div>
+       
       </div>
-      <ul>
-        <li>
-          <Link href="/articles">
-            Articles
-          </Link>
-        </li>
-        <li>
-          <Link href="/about">
-            About us
-          </Link>
-        </li>
-        <li>
-          <Link href="/contacts">
-            Contact us
-          </Link>
-        </li>
-      </ul>
     </header>
   )
 }

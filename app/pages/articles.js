@@ -3,17 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout.js'
+import {db} from './api/articles.js'
 
-export default function Articles() {
-  const [articles, setArticles] = useState([])
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('/api/articles')
-      const articles = await response.json()
-      setArticles(articles)
-    }
-    fetchData()
-  }, [])
+export default function Articles( {data} ) {
+  
+console.log(articles)
   return (
     <Layout>
       <Head>
@@ -26,7 +20,7 @@ export default function Articles() {
       </h1>
       <p class="italic font-bold">This page fetch data from the client side, not good for SEO.</p>
       <ul>
-        {articles.map( article => (
+        {data.map( article => (
           <li key={article.slug}>
             <h2><Link href={`/articles/${article.slug}`}>{article.title}</Link></h2>
             <p>{article.message}</p>
@@ -35,4 +29,15 @@ export default function Articles() {
       </ul>
     </Layout>
   )
+}
+
+export async function getStaticProps(){
+  const res= db
+  console.log(res)
+  const data = res.json()
+  return {
+    props:{
+      data,
+    },
+  }
 }

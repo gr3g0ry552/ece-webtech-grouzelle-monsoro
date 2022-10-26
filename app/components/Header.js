@@ -9,7 +9,6 @@ export default function Header() {
       <title>Create Next App</title>
       <Link href={`/`}>
           <a>
-           
             <span class="text-3xl box-border w-50">
               Web technologies
             </span>
@@ -18,7 +17,7 @@ export default function Header() {
       <div class="container mx-auto px-4 columns-3 gap-4">
 
         
-          <div class="bg-slate-200 box-border w-10 ">
+          <div class="bg-slate-200">
             <Link href="/articles">
               Articles
             </Link>

@@ -6,7 +6,7 @@ export default function ContactUs() {
   return (
     <Layout>
       <Head>
-        <title>WebTech - About us</title>
+        <title class="static h-10">WebTech - About us</title>
         <meta name="description" content="Don't be shy, drop us an email" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

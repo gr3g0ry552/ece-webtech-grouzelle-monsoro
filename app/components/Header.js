@@ -17,17 +17,17 @@ export default function Header() {
       <div class="container mx-auto px-4 columns-3 gap-4">
 
         
-          <div class="bg-slate-200">
+          <div class="bg-slate-200 rounded-md">
             <Link href="/articles">
               Articles
             </Link>
           </div>
-          <div class="bg-red-400">
+          <div class="bg-red-400 rounded-md">
             <Link href="/about">
               About us
             </Link>
           </div>
-          <div class="bg-slate-500">
+          <div class="bg-slate-500 rounded-md">
             <Link href="/contacts">
               Contact us
             </Link>

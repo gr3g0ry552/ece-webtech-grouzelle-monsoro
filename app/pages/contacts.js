@@ -49,7 +49,7 @@ export default function Contacts() {
               </label>
             </div>
             <div class="relative h-32 w-36">
-              <div class="absolute bottom-0 right-0 h-0 w-0">
+              <div>
                 <input class="text-slate-100 bg-blue-400 rounded-md" 
                           type="submit" value="Send" />
               </div>

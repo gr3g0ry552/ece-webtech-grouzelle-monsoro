@@ -5,29 +5,21 @@ import Layout from '../components/Layout.js'
 export default function Home() {
   return (
     <Layout>
-      <div class="static place-content-center">
-        <div class="h-0">
-          <h1>
-            Welcome to <a href="https://www.adaltas.com">web technologies!</a>
+      <div class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
+        <div class="">
+          <p class="relative h-32 w-32 space-y-10"></p>
+          <h1 class="font-extrabold ">
+            <center class="text-4xl">
+              WELCOME TO OUR WEBSITE !
+            </center>            
           </h1>
-
-          <ul>
-            <li>
-              <Link href="/articles">
-                View our articles
-              </Link>
-            </li>
-            <li>
-              <Link href="/about">
-                About us
-              </Link>
-            </li>
-            <li>
-              <Link href="/contacts">
-                Contact us
-              </Link>
-            </li>
-          </ul>
+        </div>
+        <div class="relative h-32 w-32 space-y-10">
+        </div>
+        <div class="right-0">
+          <h2>
+            This website was designed by Yan GROUZELLE and Grégory MONSORO
+          </h2>
         </div>
       </div>
     </Layout>

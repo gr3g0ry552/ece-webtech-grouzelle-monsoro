@@ -19,7 +19,7 @@ export default function Header() {
 
         
           <div class="bg-slate-200 box-border w-10 ">
-            <Link href="/articles">
+            <Link href="/articles_general">
               Articles
             </Link>
           </div>

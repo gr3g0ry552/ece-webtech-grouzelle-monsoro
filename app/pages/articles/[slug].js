@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
+//import {GetStaticProps, GetStaticPaths} from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../../components/Layout.js'
+import { db } from '../../api/articles.js'
 
 export default function Article({
   article
@@ -17,29 +19,42 @@ export default function Article({
       <h1>
         {article.title}
       </h1>
-      <p style={{fontStyle: 'italic'}}>This page fetch data at build time, excellent for SEO.</p>
-      <p>
-        {article.message}
-      </p>
+      <p style={{ fontStyle: 'italic' }}>This page fetch data at build time, excellent for SEO. {article.message}</p>
+
     </Layout>
   )
 }
 
-export async function getStaticProps(ctx) {
-  const response = await fetch(`http://localhost:3000/api/articles/${ctx.params.slug}`)
-  const article = await response.json()
+
+
+export  async function getStaticProps(context) {
+
+const data = db
   return {
     props: {
-      article: article
+      article :data
     }
   };
 }
 
-export async function getStaticPaths(ctx) {
-  const response = await fetch(`http://localhost:3000/api/articles`)
-  const articles = await response.json()
-  return {
-    paths: articles.map( article => `/articles/${article.slug}`),
-    fallback: false
+export async function getStaticPaths() {
+  
+  const paths= db.map( article => {
+    return {
+      params: { slug: article.slug.toString() }
+    }
+  })
+
+  
+  return{
+    paths,
+    fallback:false
   };
 }
+
+//export async function getStaticPaths() {
+  //return {
+   // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
+    //fallback: false,
+  //}
+//}

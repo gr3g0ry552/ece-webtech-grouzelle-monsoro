@@ -12,7 +12,7 @@ export default function Home() {
 
       <ul>
         <li>
-          <Link href="/articles">
+          <Link href="/articles_general">
             View our articles
           </Link>
         </li>

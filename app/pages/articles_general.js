@@ -3,11 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout.js'
-import {db} from './api/articles.js'
+import {db} from '../api/articles.js'
 
 export default function Articles( {data} ) {
   
-console.log(articles)
+
   return (
     <Layout>
       <Head>
@@ -31,10 +31,9 @@ console.log(articles)
   )
 }
 
-export async function getStaticProps(){
+export function getStaticProps(){
   const res= db
-  console.log(res)
-  const data = res.json()
+  const data = res
   return {
     props:{
       data,

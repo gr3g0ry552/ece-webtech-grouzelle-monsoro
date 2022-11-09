@@ -25,18 +25,35 @@ export default function Article({
   )
 }
 
+/////////////////
+/*
+export const getStaticProps = async (context) => {
+  const id = context.params.slug
+  const res = await fetch('http://localhost:3000/api/articles/'+id)
+  console.log(res);
+  const data = await res.json()
+
+  return {
+    props: { article: data }
+  }
+}*/
+///////////////////////
+
+export const getStaticProps=async(context)=>{
+const id=context.params.slug
+console.log(id)
 
 
-export  async function getStaticProps(context) {
 
 const data = db
+console.log(data)
   return {
     props: {
       article :data
     }
   };
 }
-
+/*
 export async function getStaticPaths() {
   
   const paths= db.map( article => {
@@ -51,10 +68,19 @@ export async function getStaticPaths() {
     fallback:false
   };
 }
+*/
+export const getStaticPaths = async () => {
+  const res = await fetch('https://my-json-server.typicode.com/yGrouzelle/db-webtech/posts');
+  const data = await res.json();
 
-//export async function getStaticPaths() {
-  //return {
-   // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
-    //fallback: false,
-  //}
-//}
+  // map data to an array of path objects with params (id)
+  const paths = data.map(article => {
+    return {
+      params: { id: article.slug.toString() }
+    }
+  })
+  return {
+    paths,
+    fallback: false
+  }
+}

@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout.js'
-import {db} from '../api/articles.js'
+
 
 export default function Articles( {data} ) {
   
@@ -30,13 +30,23 @@ export default function Articles( {data} ) {
     </Layout>
   )
 }
-
+/*
 export function getStaticProps(){
-  const res= db
-  const data = res
+  const data = db
   return {
     props:{
       data,
     },
+  }
+}
+
+*/
+
+export const getStaticProps = async () => {
+  const res = await fetch('https://my-json-server.typicode.com/yGrouzelle/db-webtech/posts');
+  const db = await res.json();
+
+  return {
+    props: { data: db }
   }
 }

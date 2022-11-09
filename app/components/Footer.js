@@ -1,6 +1,3 @@
-
-
-
 export default function Header() {
   return (
     <footer class="place-content-center absolute inset-x-0 bottom-0">

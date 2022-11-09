@@ -19,8 +19,9 @@ export default function Header() {
       <div class="container mx-auto px-4 columns-3 gap-4">
 
         
+        
           <div class="bg-slate-200 rounded-md">
-            <Link href="/articles">
+          <Link href="/articles_general">
               Articles
             </Link>
           </div>

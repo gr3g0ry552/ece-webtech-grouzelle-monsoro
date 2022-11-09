@@ -3,11 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout.js'
-import {db} from './api/articles.js'
+
 
 export default function Articles( {data} ) {
   
-console.log(articles)
+
   return (
     <Layout>
       <Head>
@@ -22,7 +22,7 @@ console.log(articles)
       <ul>
         {data.map( article => (
           <li key={article.slug}>
-            <h2><Link href={`/articles/${article.slug}`}>{article.title}</Link></h2>
+            <h2><Link href={`/articles/${article.id}`}>{article.title}</Link></h2>
             <p>{article.message}</p>
           </li>
         ))}
@@ -31,13 +31,11 @@ console.log(articles)
   )
 }
 
-export async function getStaticProps(){
-  const res= db
-  console.log(res)
-  const data = res.json()
+export const getStaticProps = async () => {
+  const res = await fetch('https://my-json-server.typicode.com/yGrouzelle/db-webtech/posts');
+  const db = await res.json();
+
   return {
-    props:{
-      data,
-    },
+    props: { data: db }
   }
 }

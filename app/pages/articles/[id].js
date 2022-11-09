@@ -23,9 +23,16 @@ export async function getStaticPaths() {
     "https://my-json-server.typicode.com/yGrouzelle/db-webtech/posts"
   );
   const data = await res.json();
+  console.log(data)
+  const paths = data.map(article => {
+    return {
+      params: { id: article.id.toString() }
+    }
+  })
+  console.log(paths)
   return {
-    paths: data.map((d) => ({ params: { id: d.slug.toString() } })),
-    fallback: false,
+    paths,
+    fallback: false
   };
 }
 
@@ -34,11 +41,12 @@ export async function getStaticProps(context) {
   const id = context.params.id
   const res = await fetch(
     `https://my-json-server.typicode.com/yGrouzelle/db-webtech/posts/${id}`
-  );
-  // const articles = await res.json()
+  )
+ 
+  const data = await res.json()
 
   return {
     // Passed to the page component as props
-    props: {id:1, message: "test", title: "my title"},
+    props: {article: data},
   };
 }

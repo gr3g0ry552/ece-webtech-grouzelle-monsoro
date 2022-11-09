@@ -22,7 +22,7 @@ export default function Articles( {data} ) {
       <ul>
         {data.map( article => (
           <li key={article.slug}>
-            <h2><Link href={`/articles/${article.slug}`}>{article.title}</Link></h2>
+            <h2><Link href={`/articles/${article.id}`}>{article.title}</Link></h2>
             <p>{article.message}</p>
           </li>
         ))}
@@ -30,17 +30,6 @@ export default function Articles( {data} ) {
     </Layout>
   )
 }
-/*
-export function getStaticProps(){
-  const data = db
-  return {
-    props:{
-      data,
-    },
-  }
-}
-
-*/
 
 export const getStaticProps = async () => {
   const res = await fetch('https://my-json-server.typicode.com/yGrouzelle/db-webtech/posts');

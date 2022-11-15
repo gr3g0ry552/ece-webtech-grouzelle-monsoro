@@ -35,7 +35,11 @@ export default function Header() {
               Contact us
             </Link>
           </div>
-          
+          <div class="bg-slate-420 rounded-md">
+            <Link href="/user">
+              User information
+            </Link>
+          </div>
        
       </div>
     </header>

@@ -1,9 +1,16 @@
 
-
+import React, { useState, useEffect } from "react"
 import Link from 'next/link'
 import Image from 'next/image'
+import Login from './Login';
+import logout from './Logout';
+import Logout from './Logout';
 
 export default function Header() {
+  //const [logPost,setlogPost]= useState(false)
+
+  const [log, setlog] = useState(false);
+
   return (
     <header class="bg-slate-300">
       <title>Create Next App</title>
@@ -36,10 +43,15 @@ export default function Header() {
             </Link>
           </div>
           <div class="bg-slate-420 rounded-md">
-            <Link href="/user">
-              User information
-            </Link>
+          <button onClick={() => setlog(!log)}>conexion</button>
+          {log && <Login />}
+          
+          
+
+          
           </div>
+
+          
        
       </div>
     </header>

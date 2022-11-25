@@ -9,7 +9,7 @@ export default function Articles( {data} ) {
   
 
   return (
-    console.log("frrt")
+   
     <Layout>
       <Head>
         <title>WebTech - articles</title>

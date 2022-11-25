@@ -16,11 +16,11 @@ export default function LogFunc() {
 
   return (
     <Layout>
-    <div class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
-      <p class="static h-80"></p>
+   
       <div>
-        <div class="text-center">
-          <form class="flex flex-col" onSubmit={onSubmit}>
+      <div>
+        <div >
+          <form onSubmit={onSubmit}>
             <div>
             <label>
               <span>username</span>
@@ -31,7 +31,7 @@ export default function LogFunc() {
 
             <label>
               <span>password</span>
-              <input type="text" name="password" />
+              <input type="password" name="password" />
             </label>
             </div>
           

@@ -1,13 +1,17 @@
-
-export default function Login ( {user} ) {
+import { useContext } from 'react'
+import {Context} from './UserContext'
+export default function Login () {
  
-return(
-<>
-<h1>Bienvenue dans votre compte</h1>
-
-
-</>
-)
+    const {user, logout} = useContext(Context)
+    return (
+      <div>
+        Welcome {user.name}
+        <div>
+          <button onClick={()=>{ logout() }}>se deconnecter</button>
+        </div>
+      </div>
+      
+      )
 
 
 }

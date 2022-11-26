@@ -1,16 +1,17 @@
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect,useContext } from "react"
 import Link from 'next/link'
 import Image from 'next/image'
 import Login from './Login';
 import logout from './Logout';
 import Logout from './Logout';
+import Context from "UserContext";
 
 export default function Header() {
-  //const [logPost,setlogPost]= useState(false)
+ 
 
   const [log, setlog] = useState(false);
-
+ const {user}=useContext(Context)
   return (
     <header class="bg-slate-300">
       <title>Create Next App</title>
@@ -43,8 +44,8 @@ export default function Header() {
             </Link>
           </div>
           <div class="bg-slate-420 rounded-md">
-          <button onClick={() => setlog(!log)}>conexion</button>
-          {log && <Login />}
+         {user ? <Login/>: <Logout/>}
+         
           
           
 

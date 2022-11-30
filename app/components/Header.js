@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import UserInfo from "./UserInfo";
 import Connection from "./Connection";
-import {Context} from "UserContext";
+import { Context } from "UserContext";
 
 export default function Header() {
   const [log, setlog] = useState(false);
@@ -13,7 +13,7 @@ export default function Header() {
       <title>Create Next App</title>
       <Link href={`/`}>
         <a>
-          <span class="text-3xl box-border w-50">
+          <span class="text-5xl box-border w-50">
             <svg
               class="h-10 w-10"
               viewBox="0 0 576 512"
@@ -24,18 +24,20 @@ export default function Header() {
           </span>
         </a>
       </Link>
-      <div class="container mx-auto px-4 columns-3 gap-4">
-        <div class="bg-slate-200 rounded-md">
-          <Link href="/articles_general">Articles</Link>
-        </div>
-        <div class="bg-red-400 rounded-md">
-          <Link href="/about">About us</Link>
-        </div>
-        <div class="bg-slate-500 rounded-md">
-          <Link href="/contacts">Contact us</Link>
-        </div>
-        <div class="bg-slate-420 rounded-md">
-          {user ? <UserInfo /> : <Connection />}
+      <div class="flex">
+        <div class="flex mx-auto px-4 columns-6 gap-20">
+          <div class="bg-slate-200 rounded-md h-10 text-2xl font-bold font-mono">
+            <Link href="/articles_general">Articles</Link>
+          </div>
+          <div class="bg-red-400 rounded-md h-10 text-2xl font-bold font-mono">
+            <Link href="/about">About us</Link>
+          </div>
+          <div class="bg-slate-500 rounded-md h-10 text-2xl font-bold font-mono">
+            <Link href="/contacts">Contact us</Link>
+          </div>
+          <div class="bg-slate-420 rounded-md">
+            {user ? <UserInfo /> : <Connection />}
+          </div>
         </div>
       </div>
     </header>

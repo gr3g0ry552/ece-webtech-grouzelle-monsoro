@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Login from "./Login";
-import logout from "./Logout";
-import Logout from "./Logout";
-import Context from "UserContext";
+import UserInfo from "./UserInfo";
+import Connection from "./Connection";
+import {Context} from "UserContext";
 
 export default function Header() {
   const [log, setlog] = useState(false);
@@ -36,7 +35,7 @@ export default function Header() {
           <Link href="/contacts">Contact us</Link>
         </div>
         <div class="bg-slate-420 rounded-md">
-          {user ? <Login /> : <Logout />}
+          {user ? <UserInfo /> : <Connection />}
         </div>
       </div>
     </header>

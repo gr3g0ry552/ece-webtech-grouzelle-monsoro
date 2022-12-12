@@ -1,55 +1,87 @@
-# Server WEB Grouzelle Monsoro
 
+# Blogging application - ECE Webtech project
 
-**Description**
----
-Cette application permet d'accéder à un serveur web sur lequel sont accéssibles :
-- des informations sur les contributeurs
-- une liste d'objets
+*presentation, introduction, ...*
 
----
+## Production 
 
-**Installation**
----
-* Installer next, react and react-dom
+- Vercel URL: https://...
+- Supabase project URL: https://app.supabase.com/project/...
 
- ```
- npm install next react react-dom
- ```
+## Usage
 
-* Ajouter au fichier 'package.json' les dépendances necessaires
+*how to start and use the application, run the tests, ...*
 
-``` json
-"scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "next lint"
-}
-```
+* Clone this repository, from your local machine:
+  ```
+  git clone ...
+  cd ...
+  ```
+* Start the the application
+  ```bash
+  cd app
+  # Install dependencies (use yarn or npm)
+  npm install
+  npm run build
+  npm start
+  ```
+* Start Supabase
+  ```bash
+  cd supabase
+  docker compose up ...
+  ```
 
-* Accès à l'application
+## Authors
 
-```bash
-cd app
-```
+*name, email, ...*
 
+## Tasks
+  
+**Project management:**
 
+* Naming convention   
+  *place your graduation and comments*
+* Project structure   
+  *place your graduation and comments*
+* Git   
+  *place your graduation and comments*
+* Code quality   
+  *place your graduation and comments*
+* Design, UX, and content   
+  *place your graduation and comments*
 
----
+**Application development:**
 
-**Projet réalisé à l'aide de**
----
-* [VSCode](https://code.visualstudio.com/)
-* [Java Script](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+* Home page   
+  *place your graduation and comments*
+* Login and profile page   
+  *place your graduation and comments*
+* New articles creation   
+  *place your graduation and comments*
+* New comment creation   
+  *place your graduation and comments*
+* Resource access control   
+  *place your graduation and comments*
+* Article modification   
+  *place your graduation and comments*
+* Article removal   
+  *place your graduation and comments*
+* Comment modification   
+  *place your graduation and comments*
+* Comment removal   
+  *place your graduation and comments*
+* Account settings   
+  *place your graduation and comments*
+* WYSIWYG integration   
+  *place your graduation and comments*
+* Gravatar integration   
+  *place your graduation and comments*
+* Light/dark theme   
+  *place your graduation and comments*
+* Accent color selection   
+  *place your graduation and comments*
 
-* [Node js](https://nodejs.org/en/) 
+## Bonus
 
-* [Next js](https://nextjs.org/) 
-
----
-
-**Auteurs**
----
-* [Yan Grouzelle](https://github.com/yGrouzelle)
-* [Grégory MONSORO](https://github.com/gr3g0ry552)
+* Task title   
+  *place your graduation and comments*

@@ -10,11 +10,13 @@ const [user, setUser] = useState()
 const supabaseClient = useSupabaseClient()
 const supabaseUser = useUser()
 const [loading, setLoading] = useState(true)
+const [username_contexte,setUsername_contexte]=useState()
 useEffect(function (){
 
     if (supabaseUser) {
-      console.log("je suis l'erreur")
+      
       setUser(supabaseUser)
+    
       setLoading(false)
     } 
   }, [supabaseUser]) 
@@ -30,7 +32,7 @@ async function logout() {
 
 }
 
-return (<Context.Provider value={{user,logout}}>
+return (<Context.Provider value={{user,logout,username_contexte,setUsername_contexte}}>
       {children}
     </Context.Provider>
   )

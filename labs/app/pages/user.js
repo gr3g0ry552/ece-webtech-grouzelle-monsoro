@@ -7,7 +7,7 @@ import { data } from "autoprefixer";
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function User() {
-  const { user, logout } = useContext(Context)
+  const { user, logout,setUsername_contexte,username_contexte } = useContext(Context)
   const supabase = useSupabaseClient()
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
@@ -44,15 +44,18 @@ export default function User() {
 
       if (data) {
         setUsername(data.username)
+     
         setWebsite(data.website)
         setfull_name(data.full_name)
         setAdresse(data.adresse)
         setnationality(data.nationality)
+        setUsername_contexte(data.username)
       }
     } catch (error) {
       alert('Error loading user data!')
       console.log(error)
     } finally {
+
       setLoading(false)
     }
   }
@@ -75,6 +78,7 @@ export default function User() {
       let { error } = await supabase.from('profiles').upsert(updates)
       if (error) throw error
       alert('Profile updated!')
+      
     } catch (error) {
       alert('Error updating the data!')
       console.log(error)
@@ -115,7 +119,9 @@ export default function User() {
               id="username"
               type="text"
               value={username || ''}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {setUsername(e.target.value)
+                setUsername_contexte(e.target.value)}
+              }
             />
           </div>
           <div>

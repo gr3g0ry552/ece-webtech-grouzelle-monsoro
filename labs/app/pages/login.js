@@ -11,7 +11,6 @@ export default function Login() {
   const { user } = useContext(Context)
   const router = useRouter()
   const supabaseClient = useSupabaseClient()
-  const session=useSession()
   console.log(user)
   if(user){ router.push('/user')
   console.log("connecte")

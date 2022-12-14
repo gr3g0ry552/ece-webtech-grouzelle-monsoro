@@ -1,25 +1,53 @@
 import Link from "next/link";
 import Image from "next/image";
+import Button from "./DarkMode";
 
 export default function Header() {
+  const renderThemeChanger = () => {
+    return (
+      <Button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+          />
+        </svg>
+      </Button>
+    );
+  };
   return (
     <header class="bg-slate-300">
       <title>Create Next App</title>
       <Link href={`/`}>
         <span class="text-5xl box-border w-50">
           <svg
-            class="h-10 w-10"
-            viewBox="0 0 576 512"
             xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 28 28"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-20 h-20"
           >
-            <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
           </svg>
         </span>
       </Link>
       <div class="flex">
         <div class="flex mx-auto px-4 columns-6 gap-20">
           <div class="bg-slate-200 rounded-md h-10 text-2xl font-bold font-mono">
-            <Link href="/articles_general">Articles</Link>
+            <Link href="/articles">Articles</Link>
           </div>
           <div class="bg-red-400 rounded-md h-10 text-2xl font-bold font-mono">
             <Link href="/about">About us</Link>
@@ -28,6 +56,8 @@ export default function Header() {
             <Link href="/contact">Contact us</Link>
           </div>
         </div>
+        <div class="bg-slate-500 mr-2"></div>
+        {renderThemeChanger()}
       </div>
     </header>
   );

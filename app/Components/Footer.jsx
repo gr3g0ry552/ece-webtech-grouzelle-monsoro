@@ -1,15 +1,22 @@
 export default function Footer() {
   return (
-    <footer class="place-content-center absolute inset-x-0">
-      <div class="text-center bg bg-slate-300">
-        <a
-          class="relative h-10 w-10"
-          href="https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro"
-        >
-          <p>Our</p>
-          <p>Github</p>
-        </a>
-        <img class="../public/favicon.ico"></img>
+    <footer>
+      <div class="items-center">
+        <div class="py-6 bg-slate-200 w-fill">
+          <div class="mr-2 w-fit">
+            <a href="https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro">
+              <img
+                class="rounded-full bg-slate-200"
+                src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                width={60}
+                height={60}
+              />
+            </a>
+          </div>
+          <div class="text-center">
+            <span>{new Date().getFullYear()}</span>
+          </div>
+        </div>
       </div>
     </footer>
   );

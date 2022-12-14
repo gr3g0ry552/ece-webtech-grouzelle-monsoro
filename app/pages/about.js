@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function about() {
   return (
     <Layout>
-      <div class="h-screen flex flex-col space-y-10 bg-slate-100 dark:bg-slate-800">
+      <div class="h-screen flex flex-col space-y-40 bg-slate-100 dark:bg-slate-800">
         <div class="text-center">
           <h1 class="text-6xl font-extrabold">Contributors</h1>
         </div>
@@ -53,7 +53,37 @@ export default function about() {
           </ul>
         </div>
         <div>
-          <h1>Grégory MONSORO</h1>
+          <blockquote class="space-y-10">
+            <h1 class="font-bold text-3xl ">Grégory MONSORO</h1>
+            <p class="text-lg">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
+              itaque quasi aliquid rem ab dolores, temporibus, suscipit officiis
+              vitae, minima autem! Minima ducimus eum sed doloribus placeat
+              error veritatis asperiores vel dolores perspiciatis aperiam labore
+              alias nulla eius fuga recusandae laborum, numquam non tempora
+              perferendis unde est, odit officiis. Voluptatibus, temporibus
+              consequuntur blanditiis esse hic quo ea quam ipsa adipisci labore,
+              illum dolores? Ab non a corrupti saepe delectus ipsum fuga vero
+              quae animi laborum?
+            </p>
+          </blockquote>
+        </div>
+        <div>
+          <blockquote class="space-y-10">
+            <h1 class="font-bold text-3xl ">Yan Grouzelle</h1>
+
+            <q class="text-lg">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
+              itaque quasi aliquid rem ab dolores, temporibus, suscipit officiis
+              vitae, minima autem! Minima ducimus eum sed doloribus placeat
+              error veritatis asperiores vel dolores perspiciatis aperiam labore
+              alias nulla eius fuga recusandae laborum, numquam non tempora
+              perferendis unde est, odit officiis. Voluptatibus, temporibus
+              consequuntur blanditiis esse hic quo ea quam ipsa adipisci labore,
+              illum dolores? Ab non a corrupti saepe delectus ipsum fuga vero
+              quae animi laborum?
+            </q>
+          </blockquote>
         </div>
       </div>
     </Layout>

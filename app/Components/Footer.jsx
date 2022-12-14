@@ -6,7 +6,7 @@ export default function Footer() {
           class="relative h-10 w-10"
           href="https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro"
         >
-          <p>Contact us on</p>
+          <p>Our</p>
           <p>Github</p>
         </a>
         <img class="../public/favicon.ico"></img>

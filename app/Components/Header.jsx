@@ -71,7 +71,7 @@ export default function Header() {
   };
   return (
     <header class="bg-slate-300 dark:bg-slate-900">
-      <title>Create Next App</title>
+      <title>WebTech2022</title>
       <Link href={`/`}>
         <span class="text-5xl box-border w-50">
           <svg

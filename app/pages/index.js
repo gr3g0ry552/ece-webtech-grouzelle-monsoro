@@ -11,12 +11,14 @@ export default function Home() {
           <div class="">
             <p class="relative h-32 w-32 space-y-10"></p>
             <h1 class="font-extrabold ">
-              <center class="text-4xl">WELCOME TO OUR WEBSITE !</center>
+              <center class="text-4xl dark:text-black">
+                WELCOME TO OUR WEBSITE !
+              </center>
             </h1>
           </div>
           <div class="relative h-32 w-32 space-y-10"></div>
           <div class="right-0">
-            <h2>
+            <h2 class="text-black">
               This website was designed by Yan GROUZELLE and Grégory MONSORO
             </h2>
           </div>

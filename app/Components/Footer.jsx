@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer class="place-content-center absolute inset-x-0 bottom-0">
+    <footer class="place-content-center absolute inset-x-0">
       <div class="text-center bg bg-slate-300">
         <a
           class="relative h-10 w-10"

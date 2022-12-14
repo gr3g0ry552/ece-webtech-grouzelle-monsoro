@@ -25,7 +25,7 @@ export default function Header() {
             <Link href="/about">About us</Link>
           </div>
           <div class="bg-slate-500 rounded-md h-10 text-2xl font-bold font-mono">
-            <Link href="/contacts">Contact us</Link>
+            <Link href="/contact">Contact us</Link>
           </div>
         </div>
       </div>

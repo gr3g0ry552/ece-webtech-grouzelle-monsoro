@@ -1,7 +1,13 @@
 import Link from "next/link";
+import React, { useState, useEffect, useContext } from "react"
 import Image from "next/image";
+import UserInfo from "./UserInfo"
+import Connection from "./Connection"
+import { Context } from "../Components/UserContext";
 
 export default function Header() {
+  const [log, setlog] = useState(false);
+  const { user } = useContext(Context);
   return (
     <header class="bg-slate-300">
       <title>Create Next App</title>
@@ -26,6 +32,9 @@ export default function Header() {
           </div>
           <div class="bg-slate-500 rounded-md h-10 text-2xl font-bold font-mono">
             <Link href="/contact">Contact us</Link>
+          </div>
+          <div class="bg-slate-420 rounded-md">
+            {user ? <UserInfo /> : <Connection/>}
           </div>
         </div>
       </div>

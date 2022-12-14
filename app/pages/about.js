@@ -6,7 +6,7 @@ export default function about() {
     <Layout>
       <div class="h-screen flex flex-col space-y-40 bg-slate-100 dark:bg-slate-800">
         <div class="text-center">
-          <h1 class="text-6xl font-extrabold">Contributors</h1>
+          <h1 class="py-6 text-6xl font-extrabold">Contributors</h1>
         </div>
         <div class=" md:flex mx-auto px-4 columns-2 gap-80">
           <ul>

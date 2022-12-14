@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer>
       <div class="items-center">
-        <div class="py-6 bg-slate-200 dark:bg-slate-900 w-fill">
+        <div class="py-4 bg-slate-200 dark:bg-slate-900 w-fill">
           <div class="mr-2 w-fit">
             <a href="https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro">
               <img

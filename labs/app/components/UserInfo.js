@@ -7,7 +7,7 @@ export default function UserInfo () {
     return (
       <div>
         <li>
-        Username : 
+        Username :
         </li>
         <div>
           <div>

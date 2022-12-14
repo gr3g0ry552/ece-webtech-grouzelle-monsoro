@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Head from 'next/head'
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
 import Layout from '../components/Layout.js'
@@ -11,6 +11,7 @@ export default function Login() {
   const { user } = useContext(Context)
   const router = useRouter()
   const supabaseClient = useSupabaseClient()
+  const session=useSession()
   console.log(user)
   if(user){ router.push('/user')
   console.log("connecte")

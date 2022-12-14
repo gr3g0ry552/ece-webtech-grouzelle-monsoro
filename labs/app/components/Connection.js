@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import {Context} from "UserContext"
+import {Context} from "./UserContext"
 
 export default function Connection(){
 
-  console.log("dans logout")
+
     const {login} = useContext(Context)
     
     const onClickLogin = async (e) => {
@@ -12,7 +12,7 @@ export default function Connection(){
       }
     return (
       <div>
-        <button onClick={onClickLogin}>Se connecterlo</button>
+        <button onClick={onClickLogin}>Se connecter</button>
         
       </div>
     )

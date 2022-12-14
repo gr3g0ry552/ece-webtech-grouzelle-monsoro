@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import UserInfo from "./UserInfo";
-import Connection from "./Connection";
-import { Context } from "UserContext";
+import React, { useState, useEffect, useContext } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import UserInfo from "./UserInfo"
+import Connection from "./Connection"
+
+import {Context} from './UserContext'
 
 export default function Header() {
   const [log, setlog] = useState(false);
   const { user } = useContext(Context);
+  console.log(user)
   return (
     <header class="bg-slate-300">
       <title>Create Next App</title>
@@ -36,7 +38,7 @@ export default function Header() {
             <Link href="/contacts">Contact us</Link>
           </div>
           <div class="bg-slate-420 rounded-md">
-            {user ? <UserInfo /> : <Connection />}
+            {user ? <UserInfo /> : <Connection/>}
           </div>
         </div>
       </div>

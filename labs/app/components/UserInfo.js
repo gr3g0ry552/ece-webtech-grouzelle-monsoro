@@ -7,12 +7,12 @@ export default function UserInfo () {
     return (
       <div>
         <li>
-        Username : {user[0].name}
+        Username : 
         </li>
         <div>
           <div>
             <li>
-              Email : {user[0].mail}
+              Email : 
             </li>
           </div>
           <button onClick={()=>{ logout() }}>se deconnecter</button>

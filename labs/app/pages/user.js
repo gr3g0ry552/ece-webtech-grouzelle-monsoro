@@ -1,7 +1,25 @@
 import Head from "next/head";
+import { useContext,useEffect } from "react";
+import { useRouter } from "next/router";
 import Layout from "/components/Layout.js";
+import { Context } from "../components/UserContext";
+import { data } from "autoprefixer";
 
-export default function User( {user } ) {
+
+export default function User({user_data}) {
+  const { user,logout } = useContext(Context)
+
+  const router = useRouter()
+  useEffect(function(){
+  if(!user){
+    router.push('/login')
+  }},[user])
+
+  const deconnecter=function(){
+    logout()
+  }
+
+
   return (
     <Layout>
       <Head>
@@ -15,7 +33,7 @@ export default function User( {user } ) {
       </p>
 
      
-      {user.map( users => (
+      {user_data.map( users => (
         <div>
          <li>Username : {users.name}</li>
          <li>Addresse : {users.addresse}</li>
@@ -24,7 +42,7 @@ export default function User( {user } ) {
            
         ))}
 
-    
+    <button onClick={deconnecter}></button>
     </Layout>
   );
 }
@@ -34,6 +52,6 @@ export const getStaticProps = async () => {
   console.log(db)
     return {
     
-      props: { user: db }
+      props: { user_data: db }
     }
   }

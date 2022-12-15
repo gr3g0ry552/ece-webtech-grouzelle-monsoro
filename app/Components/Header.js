@@ -7,7 +7,7 @@ import { Context } from "../Components/UserContext";
 
 export default function Header() {
   const [log, setlog] = useState(false);
-  const { user } = useContext(Context);
+  const { user, } = useContext(Context);
   return (
     <header class="bg-slate-300">
       <title>Create Next App</title>
@@ -25,7 +25,7 @@ export default function Header() {
       <div class="flex">
         <div class="flex mx-auto px-4 columns-6 gap-20">
           <div class="bg-slate-200 rounded-md h-10 text-2xl font-bold font-mono">
-            <Link href="/articles_general">Articles</Link>
+            <Link href="/articles">Articles</Link>
           </div>
           <div class="bg-red-400 rounded-md h-10 text-2xl font-bold font-mono">
             <Link href="/about">About us</Link>

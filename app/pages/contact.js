@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import Head from 'next/head'
-import Layout from '../components/Layout.js'
+import Layout from '../Components/Layout.js'
 
 export default function Contact() {
   const supabase = useSupabaseClient()

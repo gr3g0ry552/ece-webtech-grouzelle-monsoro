@@ -108,8 +108,8 @@ export default function User() {
           <div>
 
             <label>
-              Email :
-              <input id="email" value={user.email} />
+              Email : {user.email}
+ 
             </label>
 
           </div>

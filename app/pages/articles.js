@@ -1,11 +1,14 @@
 //import { supabase } from "@supabase/auth-ui-react/dist/esm/common/theming";
 import Layout from "../Components/Layout";
+import Head from "next/head";
+//import { supabase } from "../utils/supabase";
 import { supabase } from "@supabase/supabase-js";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Button from "../Components/DarkMode";
+import Link from "next/link";
 
 export default function articles() {
   const [post, setPost] = useState([]);
@@ -24,7 +27,7 @@ export default function articles() {
 
   return (
     <Layout>
-     <div class="space-y-10 bg-slate-100 dark:bg-slate-800">
+      <div class="space-y-10 bg-slate-100 dark:bg-slate-800">
         <p></p>
         <div>
           <h1 class="text-3xl font-bold">Articles</h1>
@@ -63,16 +66,20 @@ export default function articles() {
               {post.map((posts) => (
                 <tr key={post.id}>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                    {posts.publication_date}
+                    <Link href={`/articles/${posts.id}`}>
+                      {posts.publication_date}
+                    </Link>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                    {posts.contenu}
+                    <Link href={`/articles/${posts.id}`}>{posts.contenu}</Link>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                    {posts.titre}
+                    <Link href={`/articles/${posts.id}`}>{posts.titre}</Link>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                    {posts.auteur_username}
+                    <Link href={`/articles/${posts.id}`}>
+                      {posts.auteur_username}
+                    </Link>
                   </td>
                 </tr>
               ))}

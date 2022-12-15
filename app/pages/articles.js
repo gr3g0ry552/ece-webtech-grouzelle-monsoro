@@ -1,14 +1,15 @@
-//import { supabase } from "@supabase/auth-ui-react/dist/esm/common/theming";
+
 import Layout from "../Components/Layout";
 import Head from "next/head";
-//import { supabase } from "../utils/supabase";
+
 import { supabase } from "@supabase/supabase-js";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Button from "../Components/DarkMode";
-
+import { Context } from "../Components/UserContext";
+import Link from "next/link";
 export default function articles() {
   const [post, setPost] = useState([]);
   const supabase = useSupabaseClient();

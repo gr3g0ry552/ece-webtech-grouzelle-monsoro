@@ -33,7 +33,7 @@ export default function articles() {
         </div>
         <div>
           <table class="min-w-full divide-y divide-slate-300">
-            <thead clasName="bg-slate-50">
+            <thead class="bg-slate-50">
               <tr>
                 <th
                   scope="col"
@@ -63,7 +63,7 @@ export default function articles() {
             </thead>
             <tbody class="divide-y divide-slate-200 bg-white">
               {post.map((posts) => (
-                <tr key={post.id}>
+                <tr key={posts.id}>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
                     {posts.publication_date}
                   </td>

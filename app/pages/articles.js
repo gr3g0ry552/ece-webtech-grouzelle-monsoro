@@ -25,7 +25,7 @@ export default function articles() {
 
   return (
     <Layout>
-      <div class="space-y-10">
+      <div class="space-y-10 bg-slate-100 dark:bg-slate-800">
         <p></p>
         <div>
           <h1 class="text-3xl font-bold">Articles</h1>

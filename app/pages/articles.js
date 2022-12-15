@@ -1,15 +1,17 @@
 //import { supabase } from "@supabase/auth-ui-react/dist/esm/common/theming";
 import Layout from "../Components/Layout";
 import { supabase } from "@supabase/supabase-js";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Button from "../Components/DarkMode";
+import { Context } from "../Components/UserContext";
 
 export default function articles() {
   const [post, setPost] = useState([]);
   const supabase = useSupabaseClient();
+  const {user} = useContext(Context)
   const router = useRouter();
 
   useEffect(() => {
@@ -80,12 +82,13 @@ export default function articles() {
           </table>
         </div>
         <div>
+          {user &&(
           <Button
             class="bg-green-600 rounded-md"
             onClick={() => router.push("/creation/article")}
           >
             Add
-          </Button>
+          </Button>)}
         </div>
         <div>
           <p></p>

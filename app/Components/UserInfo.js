@@ -1,4 +1,5 @@
 import { useContext,useEffect,useState } from 'react'
+import Link from 'next/link';
 import {Context} from './UserContext'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { data } from "autoprefixer";
@@ -20,18 +21,18 @@ export default function UserInfo () {
     }else{
       setUsername_contexte("non defini")
     }  
-    
+  }
 
     
   
     return (
       <div>
-        <li>
+        <Link href="/user">
         Username : {user ? <p>{username_contexte}</p> : <p>utilisateur non defini</p> }
-        </li>
-        <div>
+        </Link>
+        
           <button onClick={()=>{ logout() }}>se deconnecter</button>
-        </div>
+        
       </div>
       
       )

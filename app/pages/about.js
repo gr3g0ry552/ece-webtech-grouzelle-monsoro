@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function about() {
   return (
     <Layout>
-      <div class="h-screen flex flex-col space-y-40 bg-slate-100 dark:bg-slate-800">
+      <div class="h-max flex flex-col space-y-40 bg-slate-100 dark:bg-slate-800">
         <div class="text-center">
           <h1 class="text-6xl font-extrabold">Contributors</h1>
         </div>
@@ -84,6 +84,10 @@ export default function about() {
               quae animi laborum?
             </q>
           </blockquote>
+        </div>
+        <div class="">
+          <p></p>
+          <p></p>
         </div>
       </div>
     </Layout>

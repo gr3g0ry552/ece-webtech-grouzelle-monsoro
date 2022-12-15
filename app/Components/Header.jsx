@@ -70,7 +70,7 @@ export default function Header() {
     );
   };
   return (
-    <header class="bg-slate-300 dark:bg-slate-900">
+    <header class=" bg-slate-300 dark:bg-slate-900 w-screen">
       <title>Create Next App</title>
       <Link href={`/`}>
         <span class="text-5xl box-border w-50">

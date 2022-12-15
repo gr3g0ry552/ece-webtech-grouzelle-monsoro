@@ -1,5 +1,9 @@
 import Link from "next/link";
+import React, { useState, useEffect, useContext } from "react"
 import Image from "next/image";
+import UserInfo from "./UserInfo"
+import Connection from "./Connection"
+import { Context } from "../Components/UserContext";
 import Button from "./DarkMode";
 import { useTheme } from "next-themes";
 import { ThemeProvider } from "next-themes";
@@ -68,7 +72,12 @@ export default function Header() {
         </svg>
       </Button>
     );
-  };
+  };}
+
+
+export default function Header() {
+  const [log, setlog] = useState(false);
+  const { user } = useContext(Context);
   return (
     <header class=" bg-slate-300 dark:bg-slate-900 w-screen">
       <title>Create Next App</title>
@@ -100,6 +109,9 @@ export default function Header() {
           </div>
           <div class="bg-slate-500 rounded-md h-8 text-2xl font-bold font-mono text-black">
             <Link href="/contact">Contact us</Link>
+          </div>
+          <div class="bg-slate-420 rounded-md">
+            {user ? <UserInfo /> : <Connection/>}
           </div>
         </div>
         <div class=""></div>

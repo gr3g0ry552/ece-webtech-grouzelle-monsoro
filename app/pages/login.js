@@ -3,8 +3,8 @@ import { useContext } from 'react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Head from 'next/head'
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
-import Layout from '../components/Layout.js'
-import {Context} from '../components/UserContext'
+import Layout from '../Components/Layout.js'
+import {Context} from '../Components/UserContext'
 
 
 export default function Login() {

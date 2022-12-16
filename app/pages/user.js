@@ -18,13 +18,36 @@ export default function User() {
   const [nationality, setnationality] = useState(null)
   const [post, setPost] = useState([]);
   const router = useRouter()
+  const CDNURL = "https://kumngtmxbqawskffdsnj.supabase.co/storage/v1/object/public/publications/";
+  async function getPub() {
+    const { data, error } = await supabase
+      .storage
+      .from('publications')
+      .list(user?.id + "/", {
+        limit: 100,
+        offset: 0,
+        sortBy: { column: "name", order: "asc"}
+      });   // Cooper/
+      // data: [ image1, image2, image3 ]
+      // image1: { name: "subscribeToCooperCodes.png" }
+
+      // to load image1: CDNURL.com/subscribeToCooperCodes.png -> hosted image
+
+      if(data !== null) {
+        setImages(data);
+      } else {
+        alert("Error loading images");
+        console.log(error);
+      }
+  }
+  
   useEffect(() => {
     (async () => {
       let { data, error, status } = await supabase
         .from("post")
-        .select(`id, publication_date, contenu, titre, auteur_username`).eq('id_auth', user.id);
+        .select(`id, publication_date, contenu, titre, auteur_username,url_img`).eq("id_auth",user.id)
       setPost(data);
-      console.log(data);
+     
     })();
   }, [user]);
   useEffect(function () {
@@ -182,53 +205,14 @@ export default function User() {
         <div>
           <h1 class="text-3xl font-bold">Mes publications</h1>
         </div>
-        <div>
-          <table class="min-w-full divide-y divide-slate-300">
-            <thead class="bg-slate-50">
-              <tr>
-                <th
-                  scope="col"
-                  class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-900 sm:pl-6"
-                >
-                  Date de publication
-                </th>
-                <th
-                  scope="col"
-                  class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900"
-                >
-                  Description
-                </th>
-                <th
-                  scope="col"
-                  class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900"
-                >
-                  titre
-                </th>
+        {post.map((posts) => (
 
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-200 bg-white">
-              {post.map((posts) => (
-                <tr key={posts.id}>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                    <Link href={`/articles/${posts.id}`}>
-                      {posts.publication_date}
-                    </Link>
-                  </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                    <Link href={`/articles/${posts.id}`}>{posts.contenu}</Link>
-                  </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                    <Link href={`/articles/${posts.id}`}>{posts.titre}</Link>
-                  </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+          <>
+          <div>titre : {posts.titre}</div>
+          {posts.url_img?
+          <img src={CDNURL+posts.url_img}></img>:<p>sans image</p>}
+          </>
+        ))}
       
       </div>
 

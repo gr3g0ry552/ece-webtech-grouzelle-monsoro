@@ -12,7 +12,7 @@ export default function Connection(){
       }
     return (
       <div>
-        <button onClick={onClickLogin}>Se connecterlo</button>
+        <button onClick={onClickLogin}>Se connecter</button>
         
       </div>
     )

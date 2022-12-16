@@ -1,8 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../components/Layout.js'
+import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function Home() {
+  const session = useSession()
+  const supabase = useSupabaseClient()
   return (
     <Layout>
       <div class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500">

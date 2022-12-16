@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import Layout from "../Components/Layout";
-import { Context } from "../Components/UserContext";
+import Layout from "/components/Layout.js";
+import { Context } from "../components/UserContext";
 import { data } from "autoprefixer";
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
@@ -108,8 +108,8 @@ export default function User() {
           <div>
 
             <label>
-              Email : {user.email}
- 
+              Email :
+              <input id="email" value={user.email} />
             </label>
 
           </div>

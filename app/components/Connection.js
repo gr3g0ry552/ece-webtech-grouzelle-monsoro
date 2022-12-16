@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import { useContext } from "react"
-import {Context} from "./UserContext"
+import { Context } from "../Components/UserContext";
 
 export default function Connection(){
 

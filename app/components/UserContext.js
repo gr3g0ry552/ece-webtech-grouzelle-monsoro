@@ -20,11 +20,7 @@ useEffect(function (){
       setLoading(false)
     } 
   }, [supabaseUser]) 
-/*async function login() {
-  const response = await fetch('https://my-json-server.typicode.com/yGrouzelle/Webtech-User/posts')
-  const data = await response.json()
- setUser(data)
-}*/
+
 
 async function logout() {
   await supabaseClient.auth.signOut()

@@ -1,51 +1,63 @@
-import { useState,useContext } from 'react'
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import Head from 'next/head'
-import Layout from '../../Components/Layout'
+import { useState,useContext } from 'react';
+import { useSupabaseClient,useUser } from '@supabase/auth-helpers-react';
+import Head from 'next/head';
+import Layout from '../../Components/Layout';
 import { useRouter } from "next/router";
-import { Context } from '../../Components/UserContext';
+import { Context } from "../../Components/UserContext";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Contact() {
-  const { user,username_contexte} = useContext(Context);
-  console.log(user)
+
+  const { user, username_contexte } = useContext(Context);
   const supabase = useSupabaseClient()
+  //const user=useUser()
+ 
   const [message, setMessage] = useState(null)
   const [newContenu, setNewContent] = useState('')
   const [newTitle, setNewTitle] = useState('')
 
-
+  const [newFile, setNewFile] = useState('')
   const router = useRouter()
- 
-  async function uploadImage(e) {
-    let file = e.target.files[0];
 
-    // userid: Cooper
-    // Cooper/
-    // Cooper/myNameOfImage.png
-    // Lindsay/myNameOfImage.png
+  async function uploadImageUrl(path,id_post){
+    
+    const {error}= await supabase.from('post').update({url_img:path }).eq('id',id_post).single()
+    if(error){
+      console.log("erreur dans post url")
+    }
+  }
+ 
+  async function uploadImage(newFile) {
 
     const { data, error } = await supabase
       .storage
       .from('publications')
-      .upload(user.id + "/" + uuidv4(), file)  // Cooper/ASDFASDFASDF uuid, taylorSwift.png -> taylorSwift.png
+      .upload( user.id+ "/" + uuidv4(), newFile) 
 
     if(data) {
-    console.log("ajout reussi")
+  return data.path
     } else {
       console.log(error);
     }
   }
   
-  const addfield = async (newContenu,newTitle) => {
-   
-    const { error } = await supabase
+  const addfield = async (newContenu,newTitle,NewFile) => {
+   console.log(newFile)
+    const {data,error } = await supabase
       .from('post')
-      .insert({ titre: newTitle,auteur_username:username_contexte,contenu: newContenu,id_auth:user.id })
-      .single()
+      .insert({ titre: newTitle,auteur_username:username_contexte,contenu: newContenu,id_auth:user.id }).single().select()
+      console.log("data field")
+      const id_post=data.id
+     
+     
+    
       if (error) {
         setMessage('Sorry, an unexpected error occured.')
       } else {
+     
+   const paths =await uploadImage(NewFile)
+uploadImageUrl(paths,id_post)
+      
         setMessage(
           <div>
             <h2 class="text-center mt-3">Confirmation</h2>
@@ -97,13 +109,14 @@ export default function Contact() {
           accept='image/png,image/jpeg'
         
           onChange={(e) => {
-            uploadImage(e);
+           //uploadImage(e)
+           setNewFile(e.target.files[0])
           }}
         />
 </label>
         <button
           class="rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
-          onClick={() => addfield(newContenu, newTitle)}>
+          onClick={() => addfield(newContenu, newTitle,newFile)}>
           Send
         </button>
       </div>

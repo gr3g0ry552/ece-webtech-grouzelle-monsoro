@@ -7,6 +7,23 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 export default function artices({ id }) {
   const [post, setPost] = useState(null);
   const supabase = useSupabaseClient();
+  const [images, setImages] = useState([]);
+  async function getImages() {
+    const { data, error } = await supabase
+      .storage
+      .from('images')
+      .list(user?.id + "/", {
+        limit: 100,
+        offset: 0,
+        sortBy: { column: "name", order: "asc" }
+      }); if (data !== null) {
+        setImages(data);
+      } else {
+      alert("Error loading images");
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     (async () => {
       let { data, error, status } = await supabase

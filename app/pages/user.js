@@ -5,6 +5,7 @@ import Layout from "../Components/Layout";
 import { Context } from "../Components/UserContext";
 import { data } from "autoprefixer";
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
+import Link from "next/link";
 
 export default function User() {
   const { user, logout,setUsername_contexte,username_contexte } = useContext(Context)
@@ -15,7 +16,17 @@ export default function User() {
   const [full_name, setfull_name] = useState(null)
   const [adresse, setAdresse] = useState(null)
   const [nationality, setnationality] = useState(null)
+  const [post, setPost] = useState([]);
   const router = useRouter()
+  useEffect(() => {
+    (async () => {
+      let { data, error, status } = await supabase
+        .from("post")
+        .select(`id, publication_date, contenu, titre, auteur_username`).eq('id_auth', user.id);
+      setPost(data);
+      console.log(data);
+    })();
+  }, [user]);
   useEffect(function () {
     if (!user) {
       router.push('/login')
@@ -154,7 +165,7 @@ export default function User() {
           </div>
           <div>
             <button
-              className="button primary block"
+              class="button primary block"
               onClick={() => updateProfile({ username, full_name, adresse,nationality })}
               disabled={loading}
             >
@@ -164,6 +175,63 @@ export default function User() {
 
 
           <button onClick={deconnecter}>Se deconnecter</button>
+          <br></br>
+        
+          <div class="space-y-10 bg-slate-100 dark:bg-slate-800">
+        <p></p>
+        <div>
+          <h1 class="text-3xl font-bold">Mes publications</h1>
+        </div>
+        <div>
+          <table class="min-w-full divide-y divide-slate-300">
+            <thead class="bg-slate-50">
+              <tr>
+                <th
+                  scope="col"
+                  class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-900 sm:pl-6"
+                >
+                  Date de publication
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900"
+                >
+                  Description
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900"
+                >
+                  titre
+                </th>
+
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              {post.map((posts) => (
+                <tr key={posts.id}>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
+                    <Link href={`/articles/${posts.id}`}>
+                      {posts.publication_date}
+                    </Link>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
+                    <Link href={`/articles/${posts.id}`}>{posts.contenu}</Link>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
+                    <Link href={`/articles/${posts.id}`}>{posts.titre}</Link>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
+                
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      
+      </div>
+
         </>
       }
     </Layout>

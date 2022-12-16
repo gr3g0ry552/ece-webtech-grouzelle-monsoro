@@ -41,7 +41,7 @@ export default function Contact() {
    
     const { error } = await supabase
       .from('post')
-      .insert({ titre: newTitle,auteur_username:username_contexte,contenu: newContenu })
+      .insert({ titre: newTitle,auteur_username:username_contexte,contenu: newContenu,id_auth:user.id })
       .single()
       if (error) {
         setMessage('Sorry, an unexpected error occured.')

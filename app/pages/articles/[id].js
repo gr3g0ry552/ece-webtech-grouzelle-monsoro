@@ -5,6 +5,7 @@ import Layout from "../../Components/Layout.js";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { Context } from "../../Components/UserContext";
+import { Input } from "postcss";
 let idtf;
 
 export default function artices({ id }) {
@@ -15,6 +16,7 @@ export default function artices({ id }) {
   const { user, username_contexte } = useContext(Context);
   //console.log(user);
   const [newComment, setNewComment] = useState(null);
+  const [modifCom, setModifCom] = useState(null);
   const [comments, setComment] = useState([]);
   const supabase = useSupabaseClient();
   const [images, setImages] = useState([]);
@@ -117,6 +119,35 @@ export default function artices({ id }) {
     }
   };
 
+  const updCom = async (modifCom, comUser, comId) => {
+    console.log(comId, modifCom);
+    if (comUser == username_contexte) {
+      const { error } = await supabase
+        .from("comments")
+        .update({ content: modifCom })
+        .eq("id", comId);
+      console.log(username_contexte);
+      if (error) {
+        setMessage("Un problème est survenu");
+        console.log(error.hint);
+      } else {
+        setMessage(
+          <div>
+            <h2 className="text-center mt-3">Confirmation</h2>
+            <p>Votre commentaire a bien été mis à jour</p>
+            <button
+              onClick={() => {
+                router.push(`/articles/${post.id}`);
+              }}
+            >
+              Retour a la page articles
+            </button>
+          </div>
+        );
+      }
+    }
+  };
+
   return (
     <Layout>
       <div>
@@ -202,6 +233,10 @@ export default function artices({ id }) {
                   scope="col"
                   class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900"
                 ></th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900"
+                ></th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-200 bg-white">
@@ -215,6 +250,15 @@ export default function artices({ id }) {
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
                     {com.content}
+                    <p></p>
+                    <input
+                      type="text"
+                      placeholder="Content"
+                      value={modifCom}
+                      onChange={(e) => {
+                        setModifCom(e.target.value);
+                      }}
+                    />
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
                     <button onClick={() => delCom(com.username, com.id)}>
@@ -229,6 +273,25 @@ export default function artices({ id }) {
                         <path
                           fill="currentColor"
                           d="M32 464C32 490.5 53.5 512 80 512h288c26.5 0 48-21.5 48-48V128H32V464zM304 208C304 199.1 311.1 192 320 192s16 7.125 16 16v224c0 8.875-7.125 16-16 16s-16-7.125-16-16V208zM208 208C208 199.1 215.1 192 224 192s16 7.125 16 16v224c0 8.875-7.125 16-16 16s-16-7.125-16-16V208zM112 208C112 199.1 119.1 192 128 192s16 7.125 16 16v224C144 440.9 136.9 448 128 448s-16-7.125-16-16V208zM432 32H320l-11.58-23.16c-2.709-5.42-8.25-8.844-14.31-8.844H153.9c-6.061 0-11.6 3.424-14.31 8.844L128 32H16c-8.836 0-16 7.162-16 16V80c0 8.836 7.164 16 16 16h416c8.838 0 16-7.164 16-16V48C448 39.16 440.8 32 432 32z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
+                    <button
+                      onClick={() => updCom(modifCom, com.username, com.id)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                        role="img"
+                        viewBox="0 0 448 512"
+                        width="0.75rem"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"
                         />
                       </svg>
                     </button>

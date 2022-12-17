@@ -1,4 +1,3 @@
-
 import Layout from "../Components/Layout";
 import Head from "next/head";
 
@@ -13,7 +12,7 @@ import Link from "next/link";
 export default function articles() {
   const [post, setPost] = useState([]);
   const supabase = useSupabaseClient();
-  const {user} = useContext(Context)
+  const { user } = useContext(Context);
   const router = useRouter();
 
   useEffect(() => {
@@ -59,7 +58,7 @@ export default function articles() {
                   scope="col"
                   class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900"
                 >
-                  auteur_username
+                  auteur
                 </th>
               </tr>
             </thead>
@@ -88,13 +87,14 @@ export default function articles() {
           </table>
         </div>
         <div>
-          {user &&(
-          <Button
-            class="bg-green-600 rounded-md"
-            onClick={() => router.push("/creation/article")}
-          >
-            Add
-          </Button>)}
+          {user && (
+            <Button
+              class="rounded-md bg-green-600 "
+              onClick={() => router.push("/creation/article")}
+            >
+              Add
+            </Button>
+          )}
         </div>
         <div>
           <p></p>

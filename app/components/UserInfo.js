@@ -6,10 +6,19 @@ import { data } from "autoprefixer";
 
 export default function UserInfo() {
   var md5 = require('md5')
-  const { user, logout, setUsername_contexte, username_contexte } = useContext(Context)
+  const { user, logout, setUsername_contexte, username_contexte,setUser} = useContext(Context)
   const supabase = useSupabaseClient()
   const [gravatar, setgravatar] = useState()
+  const supabaseUser = useUser()
+  useEffect(function (){
 
+    if (supabaseUser) {
+      
+      setUser(supabaseUser)
+    
+    
+    } 
+  }, [supabaseUser]) 
 
   if (user) {
     getUsername();

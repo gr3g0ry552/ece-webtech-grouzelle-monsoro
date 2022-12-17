@@ -11,8 +11,9 @@ const supabaseClient = useSupabaseClient()
 const supabaseUser = useUser()
 const [loading, setLoading] = useState(true)
 const [username_contexte,setUsername_contexte]=useState()
+const CDNURL= "https://kumngtmxbqawskffdsnj.supabase.co/storage/v1/object/public/publications/";
 useEffect(function (){
-
+console.log("user context")
     if (supabaseUser) {
       
       setUser(supabaseUser)
@@ -28,7 +29,7 @@ async function logout() {
 
 }
 
-return (<Context.Provider value={{user,logout,username_contexte,setUsername_contexte}}>
+return (<Context.Provider value={{user,logout,username_contexte,setUsername_contexte,CDNURL,setUser}}>
       {children}
     </Context.Provider>
   )

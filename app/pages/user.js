@@ -8,7 +8,8 @@ import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Link from "next/link";
 
 export default function User() {
-  const { user, logout,setUsername_contexte,username_contexte } = useContext(Context)
+  const { user, logout,setUsername_contexte,CDNURL} = useContext(Context)
+
   const supabase = useSupabaseClient()
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
@@ -18,28 +19,7 @@ export default function User() {
   const [nationality, setnationality] = useState(null)
   const [post, setPost] = useState([]);
   const router = useRouter()
-  const CDNURL = "https://kumngtmxbqawskffdsnj.supabase.co/storage/v1/object/public/publications/";
-  async function getPub() {
-    const { data, error } = await supabase
-      .storage
-      .from('publications')
-      .list(user?.id + "/", {
-        limit: 100,
-        offset: 0,
-        sortBy: { column: "name", order: "asc"}
-      });   // Cooper/
-      // data: [ image1, image2, image3 ]
-      // image1: { name: "subscribeToCooperCodes.png" }
 
-      // to load image1: CDNURL.com/subscribeToCooperCodes.png -> hosted image
-
-      if(data !== null) {
-        setImages(data);
-      } else {
-        alert("Error loading images");
-        console.log(error);
-      }
-  }
   
   useEffect(() => {
     (async () => {

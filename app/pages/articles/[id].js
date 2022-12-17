@@ -37,7 +37,7 @@ export default function artices({ id }) {
     (async () => {
       let { data, error, status } = await supabase
         .from("post")
-        .select(`id, publication_date, contenu, titre, auteur_username`)
+        .select(`id, publication_date, contenu, titre, auteur_username,url_img`)
         .eq("id", id)
         .single();
       setPost(data);

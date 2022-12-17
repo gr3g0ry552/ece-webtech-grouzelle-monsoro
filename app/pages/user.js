@@ -5,6 +5,7 @@ import Layout from "../Components/Layout";
 import { Context } from "../Components/UserContext";
 import { data } from "autoprefixer";
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
+import Link from "next/link";
 
 export default function User() {
   const { user, logout,setUsername_contexte,username_contexte } = useContext(Context)
@@ -15,7 +16,40 @@ export default function User() {
   const [full_name, setfull_name] = useState(null)
   const [adresse, setAdresse] = useState(null)
   const [nationality, setnationality] = useState(null)
+  const [post, setPost] = useState([]);
   const router = useRouter()
+  const CDNURL = "https://kumngtmxbqawskffdsnj.supabase.co/storage/v1/object/public/publications/";
+  async function getPub() {
+    const { data, error } = await supabase
+      .storage
+      .from('publications')
+      .list(user?.id + "/", {
+        limit: 100,
+        offset: 0,
+        sortBy: { column: "name", order: "asc"}
+      });   // Cooper/
+      // data: [ image1, image2, image3 ]
+      // image1: { name: "subscribeToCooperCodes.png" }
+
+      // to load image1: CDNURL.com/subscribeToCooperCodes.png -> hosted image
+
+      if(data !== null) {
+        setImages(data);
+      } else {
+        alert("Error loading images");
+        console.log(error);
+      }
+  }
+  
+  useEffect(() => {
+    (async () => {
+      let { data, error, status } = await supabase
+        .from("post")
+        .select(`id, publication_date, contenu, titre, auteur_username,url_img`).eq("id_auth",user.id)
+      setPost(data);
+     
+    })();
+  }, [user]);
   useEffect(function () {
     if (!user) {
       router.push('/login')
@@ -154,7 +188,7 @@ export default function User() {
           </div>
           <div>
             <button
-              className="button primary block"
+              class="button primary block"
               onClick={() => updateProfile({ username, full_name, adresse,nationality })}
               disabled={loading}
             >
@@ -164,6 +198,24 @@ export default function User() {
 
 
           <button onClick={deconnecter}>Se deconnecter</button>
+          <br></br>
+        
+          <div class="space-y-10 bg-slate-100 dark:bg-slate-800">
+        <p></p>
+        <div>
+          <h1 class="text-3xl font-bold">Mes publications</h1>
+        </div>
+        {post.map((posts) => (
+
+          <>
+          <div>titre : {posts.titre}</div>
+          {posts.url_img?
+          <img src={CDNURL+posts.url_img}></img>:<p>sans image</p>}
+          </>
+        ))}
+      
+      </div>
+
         </>
       }
     </Layout>

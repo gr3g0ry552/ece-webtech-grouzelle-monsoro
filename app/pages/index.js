@@ -1,12 +1,12 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Layout from '../components/Layout.js'
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+import Head from "next/head";
+import Link from "next/link";
+import Layout from "../Components/Layout.js";
+import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function Home() {
-  const session = useSession()
-  const supabase = useSupabaseClient()
+  const session = useSession();
+  const supabase = useSupabaseClient();
   return (
     <Layout>
       <div class="bg-tourEiffel w-screen h-screen bg-no-repeat bg-cover bg-center">

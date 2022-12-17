@@ -14,7 +14,7 @@ export default function artices({ id }) {
   const [post, setPost] = useState(null);
   const [message, setMessage] = useState(null);
   const { user, username_contexte } = useContext(Context);
-  const [gravatar, setgravatar] = useState()
+  const [gravatar, setgravatar] = useState();
   const [newComment, setNewComment] = useState(null);
   const [modifCom, setModifCom] = useState(null);
   const [comments, setComment] = useState([]);
@@ -211,7 +211,7 @@ export default function artices({ id }) {
           <table class="min-w-full divide-y divide-slate-300">
             <thead clasName="bg-slate-50">
               <tr>
-              <th
+                <th
                   scope="col"
                   class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-900 sm:pl-6"
                 >
@@ -248,7 +248,7 @@ export default function artices({ id }) {
             <tbody class="divide-y divide-slate-200 bg-white">
               {comments?.map((com) => (
                 <tr key={com.id}>
-                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
                     {com.username}
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
@@ -262,7 +262,7 @@ export default function artices({ id }) {
                     <p></p>
                     <input
                       type="text"
-                      placeholder="Content"
+                      placeholder="Edit"
                       value={modifCom}
                       onChange={(e) => {
                         setModifCom(e.target.value);

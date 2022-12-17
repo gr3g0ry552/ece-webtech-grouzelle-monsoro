@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import UserInfo from "./UserInfo";
 import Connection from "./Connection";
-import { Context } from "../Components/UserContext";
+import { Context } from "./UserContext";
 import Button from "./DarkMode";
 import { useTheme } from "next-themes";
 import { ThemeProvider } from "next-themes";

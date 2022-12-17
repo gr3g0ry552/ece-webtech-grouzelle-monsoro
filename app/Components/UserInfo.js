@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import Link from 'next/link';
-import { Context } from "../Components/UserContext";
+import { Context } from "./UserContext";
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { data } from "autoprefixer";
 

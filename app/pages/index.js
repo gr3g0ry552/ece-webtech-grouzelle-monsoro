@@ -1,8 +1,8 @@
-import Head from "next/head";
-import Link from "next/link";
-import Layout from "../Components/Layout.js";
-import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import Head from 'next/head'
+import Link from 'next/link'
+import Layout from '../Components/Layout.js'
+import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function Home() {
   const session = useSession();

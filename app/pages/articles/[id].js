@@ -19,16 +19,16 @@ export default function artices({ id }) {
   const supabase = useSupabaseClient();
   const [images, setImages] = useState([]);
   async function getImages() {
-    const { data, error } = await supabase
-      .storage
-      .from('images')
+    const { data, error } = await supabase.storage
+      .from("images")
       .list(user?.id + "/", {
         limit: 100,
         offset: 0,
-        sortBy: { column: "name", order: "asc" }
-      }); if (data !== null) {
-        setImages(data);
-      } else {
+        sortBy: { column: "name", order: "asc" },
+      });
+    if (data !== null) {
+      setImages(data);
+    } else {
       alert("Error loading images");
       console.log(error);
     }
@@ -52,7 +52,7 @@ export default function artices({ id }) {
     (async () => {
       let { data, error, status } = await supabase
         .from("comments")
-        .select(`username, publication_date, content, article_id`)
+        .select(`id, username, publication_date, content, article_id`)
         .eq("article_id", idtf);
       setComment(data);
       console.log(data);
@@ -70,7 +70,7 @@ export default function artices({ id }) {
       })
       .single();
     if (error) {
-      setMessage("Sorry, an unexpected error occured.");
+      setMessage("Un problème est survenu");
     } else {
       setMessage(
         <div>
@@ -85,6 +85,35 @@ export default function artices({ id }) {
           </button>
         </div>
       );
+    }
+  };
+
+  const delCom = async (comUser, comId) => {
+    console.log(comId);
+    if (comUser == username_contexte) {
+      const { error } = await supabase
+        .from("comments")
+        .delete()
+        .eq("id", comId);
+      console.log(username_contexte);
+      if (error) {
+        setMessage("Un problème est survenu");
+        console.log(error.hint);
+      } else {
+        setMessage(
+          <div>
+            <h2 className="text-center mt-3">Confirmation</h2>
+            <p>Votre commentaire a bien été supprimé</p>
+            <button
+              onClick={() => {
+                router.push(`/articles/${post.id}`);
+              }}
+            >
+              Retour a la page articles
+            </button>
+          </div>
+        );
+      }
     }
   };
 
@@ -169,6 +198,10 @@ export default function artices({ id }) {
                 >
                   Content
                 </th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900"
+                ></th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-200 bg-white">
@@ -182,6 +215,23 @@ export default function artices({ id }) {
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
                     {com.content}
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
+                    <button onClick={() => delCom(com.username, com.id)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                        role="img"
+                        viewBox="0 0 448 512"
+                        width="0.75rem"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M32 464C32 490.5 53.5 512 80 512h288c26.5 0 48-21.5 48-48V128H32V464zM304 208C304 199.1 311.1 192 320 192s16 7.125 16 16v224c0 8.875-7.125 16-16 16s-16-7.125-16-16V208zM208 208C208 199.1 215.1 192 224 192s16 7.125 16 16v224c0 8.875-7.125 16-16 16s-16-7.125-16-16V208zM112 208C112 199.1 119.1 192 128 192s16 7.125 16 16v224C144 440.9 136.9 448 128 448s-16-7.125-16-16V208zM432 32H320l-11.58-23.16c-2.709-5.42-8.25-8.844-14.31-8.844H153.9c-6.061 0-11.6 3.424-14.31 8.844L128 32H16c-8.836 0-16 7.162-16 16V80c0 8.836 7.164 16 16 16h416c8.838 0 16-7.164 16-16V48C448 39.16 440.8 32 432 32z"
+                        />
+                      </svg>
+                    </button>
                   </td>
                 </tr>
               ))}

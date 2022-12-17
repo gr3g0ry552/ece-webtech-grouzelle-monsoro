@@ -5,6 +5,7 @@ import Layout from "../../Components/Layout.js";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { Context } from "../../Components/UserContext";
+let idtf;
 
 export default function artices({ id }) {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function artices({ id }) {
   const [post, setPost] = useState(null);
   const [message, setMessage] = useState(null);
   const { user, username_contexte } = useContext(Context);
-  console.log(user);
+  //console.log(user);
   const [newComment, setNewComment] = useState(null);
   const [comments, setComment] = useState([]);
   const supabase = useSupabaseClient();
@@ -45,11 +46,14 @@ export default function artices({ id }) {
     })();
   }, [id, supabase]);
 
+  idtf = `${id}`;
+
   useEffect(() => {
     (async () => {
       let { data, error, status } = await supabase
         .from("comments")
-        .select(`username, publication_date, content`);
+        .select(`username, publication_date, content, article_id`)
+        .eq("article_id", idtf);
       setComment(data);
       console.log(data);
     })();
@@ -62,6 +66,7 @@ export default function artices({ id }) {
         content: newComment,
         username: username_contexte,
         publication_date: date,
+        article_id: idtf,
       })
       .single();
     if (error) {
@@ -167,7 +172,7 @@ export default function artices({ id }) {
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-200 bg-white">
-              {comments.map((com) => (
+              {comments?.map((com) => (
                 <tr key={com.id}>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
                     {com.username}
@@ -189,7 +194,7 @@ export default function artices({ id }) {
 }
 
 export async function getServerSideProps(context) {
-  console.log("donne de ssr");
+  console.log("Sortie :");
   console.log(context.params);
   return {
     props: {

@@ -10,6 +10,7 @@ import Link from "next/link";
 export default function User() {
   const { user, logout,setUsername_contexte,CDNURL} = useContext(Context)
 
+
   const supabase = useSupabaseClient()
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
@@ -20,15 +21,55 @@ export default function User() {
   const [post, setPost] = useState([]);
   const router = useRouter()
 
-  
-  useEffect(() => {
-    (async () => {
-      let { data, error, status } = await supabase
-        .from("post")
-        .select(`id, publication_date, contenu, titre, auteur_username,url_img`).eq("id_auth",user.id)
-      setPost(data);
+  async function Supprimer_publication(posts_id){
+    console.log(posts_id)
+    const { error } = await supabase
+    .from('post').delete()
+    .eq('id',posts_id)
+    if (error) {
      
-    })();
+      console.log(error);
+    } else {
+      console.log("bien sup")
+      router.reload(window.location.pathname)
+    }
+ 
+
+
+  }
+  async  function get_my_pub() {
+
+    try {
+      setLoading(true)
+
+      let { data, error, status } = await supabase
+      .from("post")
+      .select(`id, publication_date, contenu, titre, auteur_username,url_img`).eq("id_auth",user.id)
+
+      if (error && status !== 406) {
+        throw error
+      }
+
+      if (data) {
+     setPost(data)
+      }
+    } catch (error) {
+      alert('Error loading user data!')
+      console.log(error)
+    } finally {
+
+      setLoading(false)
+    }
+
+  
+  
+}
+  useEffect( function(){
+
+      if(user){
+        get_my_pub()
+      }
+    
   }, [user]);
   useEffect(function () {
     if (!user) {
@@ -188,9 +229,17 @@ export default function User() {
         {post.map((posts) => (
 
           <>
-          <div>titre : {posts.titre}</div>
+          <button class=" bg-stone-400 rounded- ring-2 ring-blue-500"  onClick={()=>{Supprimer_publication(posts.id)}} >Supprimer la publication</button>
+          <div>
+          Date de publication : {posts.publication_date}<br/>
+            Titre : {posts.titre}
           {posts.url_img?
-          <img src={CDNURL+posts.url_img}></img>:<p>sans image</p>}
+          <img src={CDNURL+posts.url_img}></img>:<p>sans image</p>
+          }
+          Description : {posts.contenu}
+
+
+          </div>
           </>
         ))}
       

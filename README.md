@@ -13,8 +13,8 @@ _how to start and use the application, run the tests, ..._
 
 - Clone this repository, from your local machine:
   ```
-  git clone ...
-  cd ...
+  git clone https://github.com/gr3g0ry552/ece-webtech-grouzelle-monsoro.git
+  cd ece-webtech-grouzelle-monsoro
   ```
 - Start the the application
 
@@ -35,7 +35,19 @@ _how to start and use the application, run the tests, ..._
 
 ## Authors
 
-_name, email, ..._
+[Grégory MONSORO](https://github.com/gr3g0ry552)
+
+[Yan Grouzelle](https://github.com/yGrouzelle)
+
+## programming languages used
+
+* [VSCode](https://code.visualstudio.com/)
+
+* [Java Script](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+
+* [Node js](https://nodejs.org/en/) 
+
+* [Next js](https://nextjs.org/) 
 
 ## Tasks
 
@@ -55,35 +67,30 @@ _name, email, ..._
 **Application development:**
 
 - Home page  
-  _place your graduation and comments_
+  Welcome page
 - Login and profile page  
-  _place your graduation and comments_
+  profile creation and modification
 - New articles creation  
-  _place your graduation and comments_
+  add new article to supabase with a button and a form
 - New comment creation  
-  _place your graduation and comments_
+  add new comment from an article page with autofilled date, username and article id
 - Resource access control  
-  _place your graduation and comments_
+  you can only modify/delete your comments/articles (with the same userId as the connected user)
 - Article modification  
-  _place your graduation and comments_
+  **none yet**
 - Article removal  
-  _place your graduation and comments_
+  **none yet**
 - Comment modification  
-  _place your graduation and comments_
+  After filling the "Edit" user input field, with a click on the **pen icon**, you can edit the content of a comment (only if it's yours)
 - Comment removal  
-  _place your graduation and comments_
+  With a click on the **trashcan icon**, you can delete a comment (only if it's yours)
 - Account settings  
-  _place your graduation and comments_
+  You can access your accout settings by clicking on your name on the header
 - WYSIWYG integration  
-  _place your graduation and comments_
+  **none yet**
 - Gravatar integration  
-  _place your graduation and comments_
+  Whenever you sing in/sign up with an email linked with a gravatar account, your profile picture will be the Gravatar profile image linked with this email on [garvata](https://fr.gravatar.com/)
 - Light/dark theme  
-  _place your graduation and comments_
+  The page will automatically be defined as dark or light according to the theme of your browser. You can also manually enable this option via a Moon (dark) and Sun (light) icon.
 - Accent color selection  
-  _place your graduation and comments_
-
-## Bonus
-
-- Task title  
-  _place your graduation and comments_
+  **none yet**

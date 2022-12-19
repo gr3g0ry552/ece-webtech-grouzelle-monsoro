@@ -5,7 +5,7 @@ _presentation, introduction, ..._
 ## Production
 
 - Vercel URL: https://...
-- Supabase project URL: https://app.supabase.com/project/...
+- Supabase project URL: https://app.supabase.com/project/kumngtmxbqawskffdsnj
 
 ## Usage
 

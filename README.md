@@ -39,7 +39,7 @@ _how to start and use the application, run the tests, ..._
 
 [Yan Grouzelle](https://github.com/yGrouzelle)
 
-## programming languages used
+## Programming languages used
 
 * [VSCode](https://code.visualstudio.com/)
 

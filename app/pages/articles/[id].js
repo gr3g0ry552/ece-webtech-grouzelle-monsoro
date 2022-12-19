@@ -20,6 +20,7 @@ export default function artices({ id }) {
   const [comments, setComment] = useState([]);
   const supabase = useSupabaseClient();
   const [images, setImages] = useState([]);
+
   async function getImages() {
     const { data, error } = await supabase.storage
       .from("images")

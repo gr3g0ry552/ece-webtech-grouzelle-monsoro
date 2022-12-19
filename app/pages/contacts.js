@@ -1,29 +1,29 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import Layout from '../components/Layout.js'
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import Layout from "../Components/Layout";
 
 export default function Contacts() {
-  const supabase = useSupabaseClient()
-  const [message, setMessage] = useState(null)
-  const onSubmit = async function(e){
-    e.preventDefault()
-    const data = new FormData(e.target)
+  const supabase = useSupabaseClient();
+  const [message, setMessage] = useState(null);
+  const onSubmit = async function (e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
     const { error } = await supabase
-      .from('contacts')
-      .insert(Object.fromEntries(data), { returning: 'minimal' })
-    if(error){
-      setMessage('Sorry, an unexpected error occured.')
-    }else{
+      .from("contacts")
+      .insert(Object.fromEntries(data), { returning: "minimal" });
+    if (error) {
+      setMessage("Sorry, an unexpected error occured.");
+    } else {
       setMessage(
         <div>
           <h2 className="text-center mt-3">Confirmation</h2>
           <p>Thank you for contacting us. We will get back to you promptly.</p>
         </div>
-      )
+      );
     }
-  }
+  };
   return (
     <Layout>
       <Head>
@@ -33,12 +33,11 @@ export default function Contacts() {
       </Head>
       <div class="space-y-10">
         <div class="space-y-20">
-          <h1 class="font-bold">
-            Contact
-          </h1>
+          <h1 class="font-bold">Contact</h1>
           <div>
             <p>
-              In order to contact us, please make sure you fill in the following form
+              In order to contact us, please make sure you fill in the following
+              form
             </p>
           </div>
         </div>
@@ -70,13 +69,16 @@ export default function Contacts() {
             </div>
             <div class="relative h-32 w-36">
               <div>
-                <input class="text-slate-100 bg-blue-400 rounded-md" 
-                          type="submit" value="Send" />
+                <input
+                  class="text-slate-100 bg-blue-400 rounded-md"
+                  type="submit"
+                  value="Send"
+                />
               </div>
             </div>
           </div>
         </form>
       </div>
     </Layout>
-  )
+  );
 }

@@ -4,7 +4,7 @@ _presentation, introduction, ..._
 
 ## Production
 
-- Vercel URL: https://...
+- Vercel URL: https://vercel.com/gr3g0ry552/ece-webtech-grouzelle-monsoro-i76x
 - Supabase project URL: https://app.supabase.com/project/kumngtmxbqawskffdsnj
 
 ## Usage

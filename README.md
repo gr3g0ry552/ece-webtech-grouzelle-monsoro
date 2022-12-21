@@ -79,7 +79,7 @@ _how to start and use the application, run the tests, ..._
 - Article modification  
   **none yet**
 - Article removal  
-  **none yet**
+  With a click on "supprimer la publication", you can delete a comment
 - Comment modification  
   After filling the "Edit" user input field, with a click on the **pen icon**, you can edit the content of a comment (only if it's yours)
 - Comment removal  

@@ -4,121 +4,130 @@ import { useRouter } from "next/router";
 import Layout from "../Components/Layout";
 import { Context } from "../Components/UserContext";
 import { data } from "autoprefixer";
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Link from "next/link";
 
 export default function User() {
-  const { user, logout,setUsername_contexte,CDNURL} = useContext(Context)
+  const { user, logout, setUsername_contexte, CDNURL } = useContext(Context);
 
-
-  const supabase = useSupabaseClient()
-  const [loading, setLoading] = useState(true)
-  const [username, setUsername] = useState(null)
-  const [website, setWebsite] = useState(null)
-  const [full_name, setfull_name] = useState(null)
-  const [adresse, setAdresse] = useState(null)
-  const [nationality, setnationality] = useState(null)
+  const supabase = useSupabaseClient();
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState(null);
+  const [website, setWebsite] = useState(null);
+  const [full_name, setfull_name] = useState(null);
+  const [adresse, setAdresse] = useState(null);
+  const [nationality, setnationality] = useState(null);
   const [post, setPost] = useState([]);
-  const router = useRouter()
+  const router = useRouter();
+  const [modifPost, setModifPost] = useState();
+  const [message, setMessage] = useState(null);
 
-  async function Supprimer_publication(posts_id){
-    console.log(posts_id)
-    const { error } = await supabase
-    .from('post').delete()
-    .eq('id',posts_id)
+  async function Supprimer_publication(posts_id) {
+    console.log(posts_id);
+    const { error } = await supabase.from("post").delete().eq("id", posts_id);
     if (error) {
-     
       console.log(error);
     } else {
-      console.log("bien sup")
-      router.reload(window.location.pathname)
+      console.log("bien sup");
+      router.reload(window.location.pathname);
     }
- 
-
-
   }
-  async  function get_my_pub() {
 
+  const updPost = async (postId, modifPost) => {
+    //console.log(comId, modifCom);
+    const { error } = await supabase
+      .from("post")
+      .update({ contenu: modifPost })
+      .eq("id", postId);
+    //console.log(username_contexte);
+    if (error) {
+      setMessage("Un problème est survenu");
+      console.log(error.hint);
+    } else {
+      console.log("bien modifié");
+      router.reload(window.location.pathname);
+    }
+  };
+
+  async function get_my_pub() {
     try {
-      setLoading(true)
+      setLoading(true);
 
       let { data, error, status } = await supabase
-      .from("post")
-      .select(`id, publication_date, contenu, titre, auteur_username,url_img`).eq("id_auth",user.id)
+        .from("post")
+        .select(`id, publication_date, contenu, titre, auteur_username,url_img`)
+        .eq("id_auth", user.id);
 
       if (error && status !== 406) {
-        throw error
+        throw error;
       }
 
       if (data) {
-     setPost(data)
+        setPost(data);
       }
     } catch (error) {
-      alert('Error loading user data!')
-      console.log(error)
+      alert("Error loading user data!");
+      console.log(error);
     } finally {
-
-      setLoading(false)
+      setLoading(false);
     }
-
-  
-  
-}
-  useEffect( function(){
-
-      if(user){
-        get_my_pub()
+  }
+  useEffect(
+    function () {
+      if (user) {
+        get_my_pub();
       }
-    
-  }, [user]);
-  useEffect(function () {
-    if (!user) {
-      router.push('/login')
-    } else {
-      getProfile()
-    }
-
-  }, [user])
+    },
+    [user]
+  );
+  useEffect(
+    function () {
+      if (!user) {
+        router.push("/login");
+      } else {
+        getProfile();
+      }
+    },
+    [user]
+  );
 
   const deconnecter = function () {
-    logout()
-  }
+    logout();
+  };
   async function getProfile() {
     try {
-      setLoading(true)
+      setLoading(true);
 
       let { data, error, status } = await supabase
-        .from('profiles')
+        .from("profiles")
         .select(`username, website,full_name,adresse,nationality`)
-        .eq('id', user.id)
-        .single()
+        .eq("id", user.id)
+        .single();
 
       if (error && status !== 406) {
-        throw error
+        throw error;
       }
 
       if (data) {
-        setUsername(data.username)
-     
-        setWebsite(data.website)
-        setfull_name(data.full_name)
-        setAdresse(data.adresse)
-        setnationality(data.nationality)
-        setUsername_contexte(data.username)
+        setUsername(data.username);
+
+        setWebsite(data.website);
+        setfull_name(data.full_name);
+        setAdresse(data.adresse);
+        setnationality(data.nationality);
+        setUsername_contexte(data.username);
       }
     } catch (error) {
-      alert('Error loading user data!')
-      console.log(error)
+      alert("Error loading user data!");
+      console.log(error);
     } finally {
-
-      setLoading(false)
+      setLoading(false);
     }
   }
-
 
   async function updateProfile({ username, full_name, adresse, nationality }) {
     try {
-      setLoading(true)
+      setLoading(true);
 
       const updates = {
         id: user.id,
@@ -126,128 +135,148 @@ export default function User() {
         full_name,
         adresse,
         nationality,
-      
-        updated_at: new Date().toISOString(),
-      }
 
-      let { error } = await supabase.from('profiles').upsert(updates)
-      if (error) throw error
-      alert('Profile updated!')
-      
+        updated_at: new Date().toISOString(),
+      };
+
+      let { error } = await supabase.from("profiles").upsert(updates);
+      if (error) throw error;
+      alert("Profile updated!");
     } catch (error) {
-      alert('Error updating the data!')
-      console.log(error)
+      alert("Error updating the data!");
+      console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
-
   return (
-
-
     <Layout>
       <Head>
         <title>WebTech - User</title>
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {!(user) ?
+      {!user ? (
         <p> redirecting </p>
-        : <>
+      ) : (
+        <>
           <p style={{ fontStyle: "italic" }}>
             Cette page affiche les données de l'utilisateurs connecté :
-
           </p>
           <div>
-          <div>
-
-            <label>
-              Email : {user.email}
- 
-            </label>
-
-          </div>
-          <div>
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              type="text"
-              value={username || ''}
-              onChange={(e) => {setUsername(e.target.value)
-                setUsername_contexte(e.target.value)}
-              }
-            />
-          </div>
-          <div>
-            <label htmlFor="full_name">Full name</label>
-            <input
-              id="full_name"
-              type="text"
-              value={full_name || ''}
-              onChange={(e) => setfull_name(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="adresse">Adresse</label>
-            <input
-              id="adresse"
-              type="text"
-              value={adresse || ''}
-              onChange={(e) => setAdresse(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="nationality">Nationality</label>
-            <input
-              id="nationality"
-              type="text"
-              value={nationality || ''}
-              onChange={(e) => setnationality(e.target.value)}
-            />
-          </div>
+            <div>
+              <label>Email : {user.email}</label>
+            </div>
+            <div>
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                type="text"
+                value={username || ""}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setUsername_contexte(e.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <label htmlFor="full_name">Full name</label>
+              <input
+                id="full_name"
+                type="text"
+                value={full_name || ""}
+                onChange={(e) => setfull_name(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="adresse">Adresse</label>
+              <input
+                id="adresse"
+                type="text"
+                value={adresse || ""}
+                onChange={(e) => setAdresse(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="nationality">Nationality</label>
+              <input
+                id="nationality"
+                type="text"
+                value={nationality || ""}
+                onChange={(e) => setnationality(e.target.value)}
+              />
+            </div>
           </div>
           <div>
             <button
               class="button primary block"
-              onClick={() => updateProfile({ username, full_name, adresse,nationality })}
+              onClick={() =>
+                updateProfile({ username, full_name, adresse, nationality })
+              }
               disabled={loading}
             >
-              {loading ? 'Loading ...' : 'Update'}
+              {loading ? "Loading ..." : "Update"}
             </button>
           </div>
 
-
           <button onClick={deconnecter}>Se deconnecter</button>
           <br></br>
-        
+
           <div class="space-y-10 bg-slate-100 dark:bg-slate-800">
-        <p></p>
-        <div>
-          <h1 class="text-3xl font-bold">Mes publications</h1>
-        </div>
-        {post.map((posts) => (
-
-          <>
-          <button class=" bg-stone-400 rounded- ring-2 ring-blue-500"  onClick={()=>{Supprimer_publication(posts.id)}} >Supprimer la publication</button>
-          <div>
-          Date de publication : {posts.publication_date}<br/>
-            Titre : {posts.titre}
-          {posts.url_img?
-          <img src={CDNURL+posts.url_img}></img>:<p>sans image</p>
-          }
-          Description : {posts.contenu}
-
-
+            <p></p>
+            <div>
+              <h1 class="text-3xl font-bold">Mes publications</h1>
+            </div>
+            <div></div>
+            {post.map((posts) => (
+              <>
+                <div class="flex-md">
+                  <div>
+                    <button
+                      class=" bg-stone-400 rounded- ring-2 ring-blue-500"
+                      onClick={() => {
+                        Supprimer_publication(posts.id);
+                      }}
+                    >
+                      Supprimer la publication
+                    </button>
+                  </div>
+                  <div class="flex-md space-x-10">
+                    <button
+                      class=" bg-stone-400 rounded- ring-2 ring-blue-500"
+                      onClick={() => {
+                        updPost(posts.id, modifPost);
+                      }}
+                    >
+                      Modifier la publication
+                    </button>
+                    <input
+                      type="text"
+                      placeholder="Edit description"
+                      value={modifPost}
+                      onChange={(e) => {
+                        setModifPost(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div>
+                  Date de publication : {posts.publication_date}
+                  <br />
+                  Titre : {posts.titre}
+                  {posts.url_img ? (
+                    <img src={CDNURL + posts.url_img}></img>
+                  ) : (
+                    <p>sans image</p>
+                  )}
+                  Description : {posts.contenu}
+                </div>
+              </>
+            ))}
           </div>
-          </>
-        ))}
-      
-      </div>
-
         </>
-      }
+      )}
     </Layout>
-  )
-
+  );
 }

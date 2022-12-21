@@ -10,32 +10,15 @@ let idtf;
 
 export default function artices({ id }) {
   const router = useRouter();
+  var md5 = require('md5')
   const date = new Date();
   const [post, setPost] = useState(null);
   const [message, setMessage] = useState(null);
   const { user, username_contexte } = useContext(Context);
-  const [gravatar, setgravatar] = useState();
   const [newComment, setNewComment] = useState(null);
-  const [modifCom, setModifCom] = useState(null);
   const [comments, setComment] = useState([]);
   const supabase = useSupabaseClient();
-  const [images, setImages] = useState([]);
 
-  async function getImages() {
-    const { data, error } = await supabase.storage
-      .from("images")
-      .list(user?.id + "/", {
-        limit: 100,
-        offset: 0,
-        sortBy: { column: "name", order: "asc" },
-      });
-    if (data !== null) {
-      setImages(data);
-    } else {
-      alert("Error loading images");
-      console.log(error);
-    }
-  }
 
   useEffect(() => {
     (async () => {
@@ -55,14 +38,18 @@ export default function artices({ id }) {
     (async () => {
       let { data, error, status } = await supabase
         .from("comments")
-        .select(`id, username, publication_date, content, article_id`)
+        .select(`id, username, publication_date, content,email`)
         .eq("article_id", idtf);
       setComment(data);
-      console.log(data);
+    
     })();
   }, [supabase]);
 
   const addfield = async (newComment) => {
+  
+   
+    //setgravatar(md5(user.email.trim().toLowerCase))
+    const l =md5(user.email.trim().toLowerCase())
     const { error } = await supabase
       .from("comments")
       .insert({
@@ -70,6 +57,8 @@ export default function artices({ id }) {
         username: username_contexte,
         publication_date: date,
         article_id: idtf,
+        email :   l
+      
       })
       .single();
     if (error) {
@@ -77,7 +66,7 @@ export default function artices({ id }) {
     } else {
       setMessage(
         <div>
-          <h2 className="text-center mt-3">Confirmation</h2>
+          <h2 class="text-center mt-3">Confirmation</h2>
           <p>Votre commentaire a bien été ajouté</p>
           <button
             onClick={() => {
@@ -105,7 +94,7 @@ export default function artices({ id }) {
       } else {
         setMessage(
           <div>
-            <h2 className="text-center mt-3">Confirmation</h2>
+            <h2 class="text-center mt-3">Confirmation</h2>
             <p>Votre commentaire a bien été supprimé</p>
             <button
               onClick={() => {
@@ -134,7 +123,7 @@ export default function artices({ id }) {
       } else {
         setMessage(
           <div>
-            <h2 className="text-center mt-3">Confirmation</h2>
+            <h2 class="text-center mt-3">Confirmation</h2>
             <p>Votre commentaire a bien été mis à jour</p>
             <button
               onClick={() => {
@@ -156,9 +145,9 @@ export default function artices({ id }) {
       </div>
       <div>
         {post && (
-          <div className="overflow-hidden divide-y divide-slate-200 shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-            <div className="bg-slate-50">
-              <dl className="grid grid-cols-[auto_1fr] px-3 py-4 [&_dt]:italic [&_dt]:text-slate-500 [&_dt]:pr-3">
+          <div class="overflow-hidden divide-y divide-slate-200 shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+            <div class="bg-slate-50">
+              <dl class="grid grid-cols-[auto_1fr] px-3 py-4 [&_dt]:italic [&_dt]:text-slate-500 [&_dt]:pr-3">
                 <dt>Titre</dt>
                 <dd>{post.titre}</dd>
                 <dt>Publication Date</dt>
@@ -167,6 +156,10 @@ export default function artices({ id }) {
                 <dd>{post.contenu}</dd>
                 <dt>auteur_username</dt>
                 <dd>{post.auteur_username}</dd>
+                <dt>publication</dt>
+                <dd> {post.url_img?
+          <img src={CDNURL+post.url_img}></img>:<p>sans image</p>
+          }</dd>
               </dl>
             </div>
           </div>
@@ -179,7 +172,7 @@ export default function artices({ id }) {
           <input
             type="text"
             placeholder="Content"
-            value={newComment}
+         
             onChange={(e) => {
               setNewComment(e.target.value);
             }}
@@ -187,7 +180,7 @@ export default function artices({ id }) {
         </label>
         <div>
           <button
-            className="rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
+            class="rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
             onClick={() => addfield(newComment)}
           >
             Send
@@ -196,13 +189,13 @@ export default function artices({ id }) {
         {message && (
           <div
             aria-label="Overlow below the drawer dialog"
-            className="fixed inset-0 bg-black/80 flex items-center justify-center"
+            class="fixed inset-0 bg-black/80 flex items-center justify-center"
             onClick={() => setMessage(null)}
             role="dialog"
           >
             <div
               aria-label="Alert pane"
-              className="max-h-[90vh] max-w-[95vw] overflow-auto p-4 prose bg-white"
+              class="max-h-[90vh] max-w-[95vw] overflow-auto p-4 prose bg-white"
             >
               {message}
             </div>
@@ -210,7 +203,7 @@ export default function artices({ id }) {
         )}
         <div>
           <table class="min-w-full divide-y divide-slate-300">
-            <thead clasName="bg-slate-50">
+            <thead clas="bg-slate-50">
               <tr>
                 <th
                   scope="col"
@@ -247,10 +240,14 @@ export default function artices({ id }) {
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-200 bg-white">
-              {comments?.map((com) => (
+              {comments?.map((com) =>
+              
+              (
+                
                 <tr key={com.id}>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                    {com.username}
+                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
+                  
+                   <img class="rounded-full" src={'https://www.gravatar.com/avatar/' + com.email+ "?s=60"} />
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
                     {com.username}
@@ -270,6 +267,7 @@ export default function artices({ id }) {
                       }}
                     />
                   </td>
+
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
                     <button onClick={() => delCom(com.username, com.id)}>
                       <svg

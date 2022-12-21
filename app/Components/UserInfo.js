@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import Link from 'next/link';
 import { Context } from "./UserContext";
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { data } from "autoprefixer";
 
 export default function UserInfo() {
@@ -9,7 +9,7 @@ export default function UserInfo() {
   const { user, logout, setUsername_contexte, username_contexte} = useContext(Context)
   const supabase = useSupabaseClient()
   const [gravatar, setgravatar] = useState()
-  const supabaseUser = useUser()
+
 
   if (user) {
     getUsername();
@@ -25,6 +25,7 @@ export default function UserInfo() {
       setUsername_contexte(data.username)
 
       setgravatar(md5(user.email.trim().toLowerCase()))
+      
 
     } else {
       setUsername_contexte("non defini")

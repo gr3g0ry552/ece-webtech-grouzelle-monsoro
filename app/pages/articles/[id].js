@@ -180,12 +180,13 @@ export default function artices({ id }) {
           />
         </label>
         <div>
+          {user ? 
           <button
             class="rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
             onClick={() => addfield(newComment)}
           >
             Send
-          </button>
+          </button>: <>Veuillez vous connecter pour ajouter des commentaires</> }
         </div>
         {message && (
           <div

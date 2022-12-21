@@ -77,9 +77,9 @@ _how to start and use the application, run the tests, ..._
 - Resource access control  
   you can only modify/delete your comments/articles (with the same userId as the connected user)
 - Article modification  
-  **none yet**
+  After filling the "Edit description" user input field, with a click on the "Modifier la publication", you can edit the content of a post
 - Article removal  
-  With a click on "supprimer la publication", you can delete a comment
+  With a click on "supprimer la publication", you can delete a post
 - Comment modification  
   After filling the "Edit" user input field, with a click on the **pen icon**, you can edit the content of a comment (only if it's yours)
 - Comment removal  

@@ -17,6 +17,7 @@ export default function artices({ id }) {
   const { user, username_contexte } = useContext(Context);
   const [newComment, setNewComment] = useState(null);
   const [comments, setComment] = useState([]);
+  const [modifCom,setModifCom]=useState()
   const supabase = useSupabaseClient();
 
 

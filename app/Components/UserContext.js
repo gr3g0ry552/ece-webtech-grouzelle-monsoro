@@ -13,7 +13,7 @@ const [loading, setLoading] = useState(true)
 const [username_contexte,setUsername_contexte]=useState()
 const CDNURL= "https://kumngtmxbqawskffdsnj.supabase.co/storage/v1/object/public/publications/";
 useEffect(function (){
-console.log("user context")
+
     if (supabaseUser) {
       
       setUser(supabaseUser)

@@ -14,7 +14,7 @@ export default function artices({ id }) {
   const date = new Date();
   const [post, setPost] = useState(null);
   const [message, setMessage] = useState(null);
-  const { user, username_contexte } = useContext(Context);
+  const { user, username_contexte,CDNURL } = useContext(Context);
   const [newComment, setNewComment] = useState(null);
   const [comments, setComment] = useState([]);
   const [modifCom,setModifCom]=useState()

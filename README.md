@@ -27,12 +27,6 @@ _how to start and use the application, run the tests, ..._
   npm start
   ```
 
-- Start Supabase
-  ```bash
-  cd supabase
-  docker compose up ...
-  ```
-
 ## Authors
 
 [Grégory MONSORO](https://github.com/gr3g0ry552)
@@ -89,7 +83,7 @@ _how to start and use the application, run the tests, ..._
 - WYSIWYG integration  
   **none yet**
 - Gravatar integration  
-  Whenever you sing in/sign up with an email linked with a gravatar account, your profile picture will be the Gravatar profile image linked with this email on [Garvatar](https://fr.gravatar.com/)
+  Whenever you sing in/sign up with an email linked with a gravatar account, your profile picture will be the Gravatar profile image linked with this email on [Garvatar](https://fr.gravatar.com/). Also when you send a comment to a publication you can see your gravatar
 - Light/dark theme  
   The page will automatically be defined as dark or light according to the theme of your browser. You can also manually enable this option via a Moon (dark) and Sun (light) icon.
 - Accent color selection  

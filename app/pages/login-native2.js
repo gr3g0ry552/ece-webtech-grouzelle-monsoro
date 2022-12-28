@@ -1,22 +1,26 @@
-import {useState} from 'react'
-import Head from 'next/head'
-import Image from 'next/image'
-import Layout from '../components/Layout.js'
+import { useState } from "react";
+import Head from "next/head";
+import Image from "next/image";
+import Layout from "../Components/Layout.js";
 
 export default function LoginNative() {
-  const [message, setMessage] = useState(null)
-  const onSubmit = function(e){
-    e.preventDefault()
-    const data = new FormData(e.target)
-   
-    console(data)
+  const [message, setMessage] = useState(null);
+  const onSubmit = function (e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+
+    console(data);
     setMessage(
       <div>
         <h2 className="text-center mt-3">Form data</h2>
-        <pre><code>{JSON.stringify(Object.fromEntries(data.entries()), null, 2)}</code></pre>
+        <pre>
+          <code>
+            {JSON.stringify(Object.fromEntries(data.entries()), null, 2)}
+          </code>
+        </pre>
       </div>
-    )
-  }
+    );
+  };
   return (
     <Layout>
       <Head>
@@ -25,9 +29,7 @@ export default function LoginNative() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <h1 className='wt-title'>
-          Login with native elementsdspierojgrepo
-        </h1>
+        <h1 className="wt-title">Login with native elementsdspierojgrepo</h1>
         <form className="[&_span]:block [&_div]:py-3" onSubmit={onSubmit}>
           <div>
             <label>
@@ -48,7 +50,7 @@ export default function LoginNative() {
           </div>
         </form>
       </div>
-      {message &&
+      {message && (
         <div
           aria-label="Overlow below the drawer dialog"
           className="fixed inset-0 bg-black/80 flex items-center justify-center"
@@ -57,11 +59,12 @@ export default function LoginNative() {
         >
           <div
             aria-label="Alert pane"
-            className="max-h-[90vh] max-w-[95vw] overflow-auto p-4 prose bg-white">
+            className="max-h-[90vh] max-w-[95vw] overflow-auto p-4 prose bg-white"
+          >
             {message}
           </div>
         </div>
-      }
+      )}
     </Layout>
-  )
+  );
 }

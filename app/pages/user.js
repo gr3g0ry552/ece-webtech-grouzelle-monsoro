@@ -266,7 +266,7 @@ export default function User() {
                   <br />
                   Titre : {posts.titre}
                   {posts.url_img ? (
-                    <img src={CDNURL + posts.url_img}></img>
+                    <img class="h-36 w-64" src={CDNURL + posts.url_img}></img>
                   ) : (
                     <p>sans image</p>
                   )}

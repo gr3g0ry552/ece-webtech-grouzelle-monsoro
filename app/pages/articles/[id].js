@@ -10,16 +10,15 @@ let idtf;
 
 export default function artices({ id }) {
   const router = useRouter();
-  var md5 = require('md5')
+  var md5 = require("md5");
   const date = new Date();
   const [post, setPost] = useState(null);
   const [message, setMessage] = useState(null);
-  const { user, username_contexte,CDNURL } = useContext(Context);
+  const { user, username_contexte, CDNURL } = useContext(Context);
   const [newComment, setNewComment] = useState(null);
   const [comments, setComment] = useState([]);
-  const [modifCom,setModifCom]=useState()
+  const [modifCom, setModifCom] = useState();
   const supabase = useSupabaseClient();
-
 
   useEffect(() => {
     (async () => {
@@ -42,15 +41,12 @@ export default function artices({ id }) {
         .select(`id, username, publication_date, content,email`)
         .eq("article_id", idtf);
       setComment(data);
-    
     })();
   }, [supabase]);
 
   const addfield = async (newComment) => {
-  
-   
     //setgravatar(md5(user.email.trim().toLowerCase))
-    const l =md5(user.email.trim().toLowerCase())
+    const l = md5(user.email.trim().toLowerCase());
     const { error } = await supabase
       .from("comments")
       .insert({
@@ -58,8 +54,7 @@ export default function artices({ id }) {
         username: username_contexte,
         publication_date: date,
         article_id: idtf,
-        email :   l
-      
+        email: l,
       })
       .single();
     if (error) {
@@ -147,7 +142,7 @@ export default function artices({ id }) {
       <div>
         {post && (
           <div class="overflow-hidden divide-y divide-slate-200 shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-            <div class="bg-slate-50">
+            <div class="bg-slate-50 dark:bg-slate-700">
               <dl class="grid grid-cols-[auto_1fr] px-3 py-4 [&_dt]:italic [&_dt]:text-slate-500 [&_dt]:pr-3">
                 <dt>Titre</dt>
                 <dd>{post.titre}</dd>
@@ -158,9 +153,14 @@ export default function artices({ id }) {
                 <dt>auteur_username</dt>
                 <dd>{post.auteur_username}</dd>
                 <dt>publication</dt>
-                <dd> {post.url_img?
-          <img src={CDNURL+post.url_img}></img>:<p>sans image</p>
-          }</dd>
+                <dd>
+                  {" "}
+                  {post.url_img ? (
+                    <img src={CDNURL + post.url_img}></img>
+                  ) : (
+                    <p>sans image</p>
+                  )}
+                </dd>
               </dl>
             </div>
           </div>
@@ -173,20 +173,22 @@ export default function artices({ id }) {
           <input
             type="text"
             placeholder="Content"
-         
             onChange={(e) => {
               setNewComment(e.target.value);
             }}
           />
         </label>
         <div>
-          {user ? 
-          <button
-            class="rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
-            onClick={() => addfield(newComment)}
-          >
-            Send
-          </button>: <>Veuillez vous connecter pour ajouter des commentaires</> }
+          {user ? (
+            <button
+              class="rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
+              onClick={() => addfield(newComment)}
+            >
+              Send
+            </button>
+          ) : (
+            <>Veuillez vous connecter pour ajouter des commentaires</>
+          )}
         </div>
         {message && (
           <div
@@ -242,14 +244,15 @@ export default function artices({ id }) {
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-200 bg-white">
-              {comments?.map((com) =>
-              
-              (
-                
+              {comments?.map((com) => (
                 <tr key={com.id}>
-                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
-                  
-                   <img class="rounded-full" src={'https://www.gravatar.com/avatar/' + com.email+ "?s=60"} />
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
+                    <img
+                      class="rounded-full"
+                      src={
+                        "https://www.gravatar.com/avatar/" + com.email + "?s=60"
+                      }
+                    />
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-500">
                     {com.username}

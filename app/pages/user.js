@@ -160,7 +160,7 @@ export default function User() {
       {!user ? (
         <p> redirecting </p>
       ) : (
-        <div class=" dark:bg-slate-800">
+        <div class=" bg-slate-100 dark:bg-slate-800">
           <p style={{ fontStyle: "italic" }}>
             Cette page affiche les données de l'utilisateurs connecté :
           </p>
